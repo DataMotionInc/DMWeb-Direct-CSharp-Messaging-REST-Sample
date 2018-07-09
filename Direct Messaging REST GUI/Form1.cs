@@ -1092,7 +1092,7 @@ namespace Direct_Messaging_REST_GUI
                 groupBoxRichTextBox.Text += string.Format("\t\tFromAddress: {0} \r\n", response.Summaries[i].FromAddress);
                 groupBoxRichTextBox.Text += string.Format("\t\tToAddress: {0} \r\n", response.Summaries[i].ToAddress);
                 groupBoxRichTextBox.Text += string.Format("\t\tSize: {0} \r\n", response.Summaries[i].Size);
-                groupBoxRichTextBox.Text += string.Format("\t\tMessageStatus: {0} \r\n", response.Summaries[i].MessageStatus);
+                groupBoxRichTextBox.Text += string.Format("\t\tMessageStatus: {0} \r\n\r\n", response.Summaries[i].MessageStatus);
 
             }
         }
@@ -1159,7 +1159,7 @@ namespace Direct_Messaging_REST_GUI
                 groupBoxRichTextBox.Text += string.Format("\t\tFromAddress: {0} \r\n", response.Summaries[i].FromAddress);
                 groupBoxRichTextBox.Text += string.Format("\t\tToAddress: {0} \r\n", response.Summaries[i].ToAddress);
                 groupBoxRichTextBox.Text += string.Format("\t\tSize: {0} \r\n", response.Summaries[i].Size);
-                groupBoxRichTextBox.Text += string.Format("\t\tMessageStatus: {0} \r\n", response.Summaries[i].MessageStatus);
+                groupBoxRichTextBox.Text += string.Format("\t\tMessageStatus: {0} \r\n\r\n", response.Summaries[i].MessageStatus);
 
             }
         }
@@ -1226,7 +1226,7 @@ namespace Direct_Messaging_REST_GUI
                 groupBoxRichTextBox.Text += string.Format("\t\tFromAddress: {0} \r\n", response.Summaries[i].FromAddress);
                 groupBoxRichTextBox.Text += string.Format("\t\tToAddress: {0} \r\n", response.Summaries[i].ToAddress);
                 groupBoxRichTextBox.Text += string.Format("\t\tSize: {0} \r\n", response.Summaries[i].Size);
-                groupBoxRichTextBox.Text += string.Format("\t\tMessageStatus: {0} \r\n", response.Summaries[i].MessageStatus);
+                groupBoxRichTextBox.Text += string.Format("\t\tMessageStatus: {0} \r\n\r\n", response.Summaries[i].MessageStatus);
 
             }
         }
