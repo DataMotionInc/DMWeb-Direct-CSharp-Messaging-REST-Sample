@@ -180,7 +180,7 @@ namespace Direct_Messaging_REST_GUI
                     return;
                 }
 
-                int folderArrayLength = response.Folders.Length;
+                int folderArrayLength = response.Folders.Count;
                 for (int i = 0; i < folderArrayLength; i++)
                 {
                     listFoldersTextBox.Text += string.Format("Folder Name: {0}\r\n", response.Folders[i].FolderName);
@@ -386,7 +386,7 @@ namespace Direct_Messaging_REST_GUI
                     }
                 }
 
-                int arrayLength = response.Summaries.Length;
+                int arrayLength = response.Summaries.Count;
 
                 //messageSummariesTextBox.Text += string.Format("More Messages Available: {0}\r\n", response.MoreMessagesAvailable);
 
@@ -538,7 +538,7 @@ namespace Direct_Messaging_REST_GUI
         {
             StartWaitCursor();
 
-            Messaging.MessageOperations user = new Messaging.MessageOperations();
+            Messaging.MoveMessageRequest user = new Messaging.MoveMessageRequest();
             int temp = 0;
             string response = "";
 
@@ -549,11 +549,11 @@ namespace Direct_Messaging_REST_GUI
                     if (int.TryParse(destinationFolderIDTextBox.Text, out temp) == true)
                     {
                         user.DestinationFolderId = int.Parse(destinationFolderIDTextBox.Text);
-                        user.MessageId = int.Parse(messageIDTextBox2.Text);
+                        int MessageId = int.Parse(messageIDTextBox2.Text);
 
                         try
                         {
-                            response = await dmWeb.Message.Move(user);
+                            response = await dmWeb.Message.Move(user, MessageId.ToString());
                             messageIDTextBox2.Text = "";
                             destinationFolderIDTextBox.Text = "";
                             messageOperationsTextBox.Text = "Message moved";
@@ -606,15 +606,15 @@ namespace Direct_Messaging_REST_GUI
             {
                 permanentCheck = false;
             }
-            Messaging.MessageOperations user = new Messaging.MessageOperations();
+            Messaging.DeleteMessageResponse user = new Messaging.DeleteMessageResponse();
             if (messageIDTextBox3.Text != "")
             {
                 if (int.TryParse(messageIDTextBox3.Text, out temp) == true)
                 {
-                    user.MessageId = int.Parse(messageIDTextBox3.Text);
+                    int MessageId = int.Parse(messageIDTextBox3.Text);
                     try
                     {
-                        await dmWeb.Message.Delete(user.MessageId.ToString(), permanentCheck);
+                        await dmWeb.Message.Delete(MessageId.ToString(), permanentCheck);
                         messageIDTextBox3.Text = "";
 
                         EndWaitCursor();
@@ -653,15 +653,14 @@ namespace Direct_Messaging_REST_GUI
 
             int temp = 0;
 
-            Messaging.MessageOperations user = new Messaging.MessageOperations();
             if (messageIDTextBox4.Text != "")
             {
                 if (int.TryParse(messageIDTextBox4.Text, out temp))
                 {
-                    user.MessageId = int.Parse(messageIDTextBox4.Text);
+                    int MessageId = int.Parse(messageIDTextBox4.Text);
                     try
                     {
-                        await dmWeb.Message.Retract(user);
+                        string response = await dmWeb.Message.Retract(MessageId.ToString());
                         messageIDTextBox4.Text = "";
                         messageOperationsTextBox.Text = "Message retracted";
 
