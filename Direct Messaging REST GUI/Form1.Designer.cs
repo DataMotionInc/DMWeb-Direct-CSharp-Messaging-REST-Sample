@@ -115,6 +115,8 @@
             this.moveButton = new System.Windows.Forms.Button();
             this.delegateOperationsTab = new System.Windows.Forms.TabPage();
             this.panel12 = new System.Windows.Forms.Panel();
+            this.getGroupInboxUnread = new System.Windows.Forms.Button();
+            this.getGroupInbox = new System.Windows.Forms.Button();
             this.getGroupMessageSummaries = new System.Windows.Forms.Button();
             this.lastMessageIdReceivedLabel = new System.Windows.Forms.Label();
             this.lastMessageIdReceivedTextBox = new System.Windows.Forms.TextBox();
@@ -123,14 +125,12 @@
             this.mustHaveAttachmentsCheckBox = new System.Windows.Forms.CheckBox();
             this.showGroupBoxButton = new System.Windows.Forms.Button();
             this.panel3 = new System.Windows.Forms.Panel();
+            this.addDelegateButton = new System.Windows.Forms.Button();
             this.deleteDelegateButton = new System.Windows.Forms.Button();
             this.delegateAddressLabel = new System.Windows.Forms.Label();
             this.delegateAddressTextBox = new System.Windows.Forms.TextBox();
             this.showDelegatesButton = new System.Windows.Forms.Button();
             this.groupBoxRichTextBox = new System.Windows.Forms.RichTextBox();
-            this.addDelegateButton = new System.Windows.Forms.Button();
-            this.getGroupInbox = new System.Windows.Forms.Button();
-            this.getGroupInboxUnread = new System.Windows.Forms.Button();
             this.readMessageSubmitButton.SuspendLayout();
             this.accountTab.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -192,7 +192,7 @@
             this.accountTextBox.ReadOnly = true;
             this.accountTextBox.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.accountTextBox.Size = new System.Drawing.Size(886, 383);
-            this.accountTextBox.TabIndex = 7;
+            this.accountTextBox.TabIndex = 0;
             // 
             // panel2
             // 
@@ -214,7 +214,7 @@
             this.passwordVisibilityCheckBox2.Location = new System.Drawing.Point(129, 74);
             this.passwordVisibilityCheckBox2.Name = "passwordVisibilityCheckBox2";
             this.passwordVisibilityCheckBox2.Size = new System.Drawing.Size(160, 24);
-            this.passwordVisibilityCheckBox2.TabIndex = 9;
+            this.passwordVisibilityCheckBox2.TabIndex = 3;
             this.passwordVisibilityCheckBox2.Text = "Display Passwords";
             this.passwordVisibilityCheckBox2.UseVisualStyleBackColor = true;
             this.passwordVisibilityCheckBox2.CheckedChanged += new System.EventHandler(this.passwordVisibilityCheckBox2_CheckedChanged);
@@ -225,7 +225,7 @@
             this.passwordChangeButton.Location = new System.Drawing.Point(129, 131);
             this.passwordChangeButton.Name = "passwordChangeButton";
             this.passwordChangeButton.Size = new System.Drawing.Size(172, 33);
-            this.passwordChangeButton.TabIndex = 8;
+            this.passwordChangeButton.TabIndex = 4;
             this.passwordChangeButton.Text = "Change Password";
             this.passwordChangeButton.UseVisualStyleBackColor = true;
             this.passwordChangeButton.Click += new System.EventHandler(this.passwordChangeButton_Click);
@@ -236,7 +236,7 @@
             this.newPasswordLabel.Location = new System.Drawing.Point(3, 42);
             this.newPasswordLabel.Name = "newPasswordLabel";
             this.newPasswordLabel.Size = new System.Drawing.Size(121, 20);
-            this.newPasswordLabel.TabIndex = 6;
+            this.newPasswordLabel.TabIndex = 0;
             this.newPasswordLabel.Text = "New Password: ";
             // 
             // oldPasswordLabel
@@ -245,7 +245,7 @@
             this.oldPasswordLabel.Location = new System.Drawing.Point(3, 10);
             this.oldPasswordLabel.Name = "oldPasswordLabel";
             this.oldPasswordLabel.Size = new System.Drawing.Size(114, 20);
-            this.oldPasswordLabel.TabIndex = 5;
+            this.oldPasswordLabel.TabIndex = 0;
             this.oldPasswordLabel.Text = "Old Password: ";
             // 
             // oldpasswordTextBox
@@ -254,7 +254,7 @@
             this.oldpasswordTextBox.Name = "oldpasswordTextBox";
             this.oldpasswordTextBox.PasswordChar = '*';
             this.oldpasswordTextBox.Size = new System.Drawing.Size(228, 26);
-            this.oldpasswordTextBox.TabIndex = 6;
+            this.oldpasswordTextBox.TabIndex = 1;
             // 
             // newpasswordTextBox
             // 
@@ -262,7 +262,7 @@
             this.newpasswordTextBox.Name = "newpasswordTextBox";
             this.newpasswordTextBox.PasswordChar = '*';
             this.newpasswordTextBox.Size = new System.Drawing.Size(228, 26);
-            this.newpasswordTextBox.TabIndex = 7;
+            this.newpasswordTextBox.TabIndex = 2;
             // 
             // panel1
             // 
@@ -287,7 +287,7 @@
             this.baseUrlTextBox.Location = new System.Drawing.Point(91, 99);
             this.baseUrlTextBox.Name = "baseUrlTextBox";
             this.baseUrlTextBox.Size = new System.Drawing.Size(405, 26);
-            this.baseUrlTextBox.TabIndex = 7;
+            this.baseUrlTextBox.TabIndex = 4;
             this.baseUrlTextBox.Text = "https://directbeta.datamotion.com/SecureMessagingAPI";
             // 
             // urlLabel
@@ -296,7 +296,7 @@
             this.urlLabel.Location = new System.Drawing.Point(3, 99);
             this.urlLabel.Name = "urlLabel";
             this.urlLabel.Size = new System.Drawing.Size(46, 20);
-            this.urlLabel.TabIndex = 8;
+            this.urlLabel.TabIndex = 0;
             this.urlLabel.Text = "URL:";
             // 
             // passwordVisibilityTextBox
@@ -305,7 +305,7 @@
             this.passwordVisibilityTextBox.Location = new System.Drawing.Point(91, 69);
             this.passwordVisibilityTextBox.Name = "passwordVisibilityTextBox";
             this.passwordVisibilityTextBox.Size = new System.Drawing.Size(152, 24);
-            this.passwordVisibilityTextBox.TabIndex = 6;
+            this.passwordVisibilityTextBox.TabIndex = 3;
             this.passwordVisibilityTextBox.Text = "Display Password";
             this.passwordVisibilityTextBox.UseVisualStyleBackColor = true;
             this.passwordVisibilityTextBox.CheckedChanged += new System.EventHandler(this.passwordVisibilityTextBox_CheckedChanged);
@@ -316,7 +316,7 @@
             this.accountDetails.Location = new System.Drawing.Point(91, 131);
             this.accountDetails.Name = "accountDetails";
             this.accountDetails.Size = new System.Drawing.Size(324, 33);
-            this.accountDetails.TabIndex = 4;
+            this.accountDetails.TabIndex = 6;
             this.accountDetails.Text = "View Account Details";
             this.accountDetails.UseVisualStyleBackColor = true;
             this.accountDetails.Click += new System.EventHandler(this.accountDetails_Click);
@@ -327,7 +327,7 @@
             this.logoutButton.Location = new System.Drawing.Point(421, 131);
             this.logoutButton.Name = "logoutButton";
             this.logoutButton.Size = new System.Drawing.Size(75, 33);
-            this.logoutButton.TabIndex = 5;
+            this.logoutButton.TabIndex = 7;
             this.logoutButton.Text = "Log Out";
             this.logoutButton.UseVisualStyleBackColor = true;
             this.logoutButton.Click += new System.EventHandler(this.logoutButton_Click);
@@ -337,7 +337,7 @@
             this.logOnButton.Location = new System.Drawing.Point(7, 131);
             this.logOnButton.Name = "logOnButton";
             this.logOnButton.Size = new System.Drawing.Size(75, 33);
-            this.logOnButton.TabIndex = 3;
+            this.logOnButton.TabIndex = 5;
             this.logOnButton.Text = "Log On";
             this.logOnButton.UseVisualStyleBackColor = true;
             this.logOnButton.Click += new System.EventHandler(this.logOnButton_Click);
@@ -349,7 +349,6 @@
             this.passwordTextBox.PasswordChar = '*';
             this.passwordTextBox.Size = new System.Drawing.Size(405, 26);
             this.passwordTextBox.TabIndex = 2;
-            this.passwordTextBox.Text = "";
             // 
             // usernameTextBox
             // 
@@ -357,7 +356,6 @@
             this.usernameTextBox.Name = "usernameTextBox";
             this.usernameTextBox.Size = new System.Drawing.Size(405, 26);
             this.usernameTextBox.TabIndex = 1;
-            this.usernameTextBox.Text = "";
             // 
             // passwordLabel
             // 
@@ -365,7 +363,7 @@
             this.passwordLabel.Location = new System.Drawing.Point(3, 36);
             this.passwordLabel.Name = "passwordLabel";
             this.passwordLabel.Size = new System.Drawing.Size(82, 20);
-            this.passwordLabel.TabIndex = 1;
+            this.passwordLabel.TabIndex = 0;
             this.passwordLabel.Text = "Password:";
             // 
             // usernameLabel
@@ -398,7 +396,7 @@
             this.listFoldersTextBox.ReadOnly = true;
             this.listFoldersTextBox.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.listFoldersTextBox.Size = new System.Drawing.Size(884, 421);
-            this.listFoldersTextBox.TabIndex = 4;
+            this.listFoldersTextBox.TabIndex = 0;
             // 
             // listFolderButton
             // 
@@ -418,7 +416,7 @@
             this.panel5.Location = new System.Drawing.Point(312, 3);
             this.panel5.Name = "panel5";
             this.panel5.Size = new System.Drawing.Size(279, 140);
-            this.panel5.TabIndex = 3;
+            this.panel5.TabIndex = 1;
             // 
             // folderIDTextBox
             // 
@@ -433,7 +431,7 @@
             this.folderIDLabel.Location = new System.Drawing.Point(22, 14);
             this.folderIDLabel.Name = "folderIDLabel";
             this.folderIDLabel.Size = new System.Drawing.Size(79, 20);
-            this.folderIDLabel.TabIndex = 1;
+            this.folderIDLabel.TabIndex = 0;
             this.folderIDLabel.Text = "FolderID: ";
             // 
             // deleteFolder
@@ -456,21 +454,21 @@
             this.panel4.Location = new System.Drawing.Point(3, 3);
             this.panel4.Name = "panel4";
             this.panel4.Size = new System.Drawing.Size(303, 140);
-            this.panel4.TabIndex = 2;
+            this.panel4.TabIndex = 0;
             // 
             // folderTypeTextBox
             // 
             this.folderTypeTextBox.Location = new System.Drawing.Point(123, 50);
             this.folderTypeTextBox.Name = "folderTypeTextBox";
             this.folderTypeTextBox.Size = new System.Drawing.Size(177, 26);
-            this.folderTypeTextBox.TabIndex = 3;
+            this.folderTypeTextBox.TabIndex = 2;
             // 
             // folderTypeLabel
             // 
             this.folderTypeLabel.Location = new System.Drawing.Point(9, 50);
             this.folderTypeLabel.Name = "folderTypeLabel";
             this.folderTypeLabel.Size = new System.Drawing.Size(108, 64);
-            this.folderTypeLabel.TabIndex = 3;
+            this.folderTypeLabel.TabIndex = 0;
             this.folderTypeLabel.Text = "Folder Type: 0 (Inbox) 1(Outbox)";
             this.folderTypeLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
@@ -479,7 +477,7 @@
             this.folderNameTextBox.Location = new System.Drawing.Point(123, 14);
             this.folderNameTextBox.Name = "folderNameTextBox";
             this.folderNameTextBox.Size = new System.Drawing.Size(177, 26);
-            this.folderNameTextBox.TabIndex = 2;
+            this.folderNameTextBox.TabIndex = 1;
             // 
             // folderNameLabel
             // 
@@ -487,7 +485,7 @@
             this.folderNameLabel.Location = new System.Drawing.Point(9, 14);
             this.folderNameLabel.Name = "folderNameLabel";
             this.folderNameLabel.Size = new System.Drawing.Size(108, 20);
-            this.folderNameLabel.TabIndex = 2;
+            this.folderNameLabel.TabIndex = 0;
             this.folderNameLabel.Text = "Folder Name: ";
             // 
             // createFolderButton
@@ -495,7 +493,7 @@
             this.createFolderButton.Location = new System.Drawing.Point(123, 91);
             this.createFolderButton.Name = "createFolderButton";
             this.createFolderButton.Size = new System.Drawing.Size(138, 37);
-            this.createFolderButton.TabIndex = 4;
+            this.createFolderButton.TabIndex = 3;
             this.createFolderButton.Text = "Create Folder";
             this.createFolderButton.UseVisualStyleBackColor = true;
             this.createFolderButton.Click += new System.EventHandler(this.createFolderButton_Click);
@@ -520,7 +518,7 @@
             this.messageSummariesTextBox.ReadOnly = true;
             this.messageSummariesTextBox.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.messageSummariesTextBox.Size = new System.Drawing.Size(881, 453);
-            this.messageSummariesTextBox.TabIndex = 4;
+            this.messageSummariesTextBox.TabIndex = 0;
             // 
             // panel6
             // 
@@ -547,7 +545,7 @@
             this.lastMessageIDLabel.Location = new System.Drawing.Point(3, 42);
             this.lastMessageIDLabel.Name = "lastMessageIDLabel";
             this.lastMessageIDLabel.Size = new System.Drawing.Size(134, 20);
-            this.lastMessageIDLabel.TabIndex = 6;
+            this.lastMessageIDLabel.TabIndex = 0;
             this.lastMessageIDLabel.Text = "Last Message ID:";
             // 
             // folderIDTextBox2
@@ -563,7 +561,7 @@
             this.folderIDLabel2.Location = new System.Drawing.Point(2, 3);
             this.folderIDLabel2.Name = "folderIDLabel2";
             this.folderIDLabel2.Size = new System.Drawing.Size(79, 20);
-            this.folderIDLabel2.TabIndex = 4;
+            this.folderIDLabel2.TabIndex = 0;
             this.folderIDLabel2.Text = "FolderID: ";
             // 
             // getMessageSummariesButton
@@ -631,7 +629,7 @@
             this.readMessageListBox.Location = new System.Drawing.Point(3, 484);
             this.readMessageListBox.Name = "readMessageListBox";
             this.readMessageListBox.Size = new System.Drawing.Size(884, 84);
-            this.readMessageListBox.TabIndex = 4;
+            this.readMessageListBox.TabIndex = 0;
             this.readMessageListBox.SelectedIndexChanged += new System.EventHandler(this.readMessageListBox_SelectedIndexChanged);
             // 
             // readMessageTextBox
@@ -642,7 +640,7 @@
             this.readMessageTextBox.ReadOnly = true;
             this.readMessageTextBox.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.readMessageTextBox.Size = new System.Drawing.Size(884, 371);
-            this.readMessageTextBox.TabIndex = 3;
+            this.readMessageTextBox.TabIndex = 0;
             // 
             // sendMessageTab
             // 
@@ -675,7 +673,7 @@
             this.clearButton.Location = new System.Drawing.Point(7, 537);
             this.clearButton.Name = "clearButton";
             this.clearButton.Size = new System.Drawing.Size(102, 29);
-            this.clearButton.TabIndex = 17;
+            this.clearButton.TabIndex = 8;
             this.clearButton.Text = "Clear Text Fields";
             this.clearButton.UseVisualStyleBackColor = true;
             this.clearButton.Click += new System.EventHandler(this.clearButton_Click);
@@ -686,7 +684,7 @@
             this.sendMessageTextBox.Multiline = true;
             this.sendMessageTextBox.Name = "sendMessageTextBox";
             this.sendMessageTextBox.Size = new System.Drawing.Size(749, 75);
-            this.sendMessageTextBox.TabIndex = 16;
+            this.sendMessageTextBox.TabIndex = 0;
             // 
             // label6
             // 
@@ -694,7 +692,7 @@
             this.label6.Location = new System.Drawing.Point(4, 357);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(104, 20);
-            this.label6.TabIndex = 15;
+            this.label6.TabIndex = 0;
             this.label6.Text = "Attachments:";
             // 
             // removeAttachmentButton
@@ -702,7 +700,7 @@
             this.removeAttachmentButton.Location = new System.Drawing.Point(7, 236);
             this.removeAttachmentButton.Name = "removeAttachmentButton";
             this.removeAttachmentButton.Size = new System.Drawing.Size(119, 51);
-            this.removeAttachmentButton.TabIndex = 14;
+            this.removeAttachmentButton.TabIndex = 7;
             this.removeAttachmentButton.Text = "Remove Attachment(s)";
             this.removeAttachmentButton.UseVisualStyleBackColor = true;
             this.removeAttachmentButton.Click += new System.EventHandler(this.removeAttachmentButton_Click);
@@ -714,14 +712,14 @@
             this.sendMessageListBox.Location = new System.Drawing.Point(138, 361);
             this.sendMessageListBox.Name = "sendMessageListBox";
             this.sendMessageListBox.Size = new System.Drawing.Size(749, 84);
-            this.sendMessageListBox.TabIndex = 13;
+            this.sendMessageListBox.TabIndex = 0;
             // 
             // sendButton
             // 
             this.sendButton.Location = new System.Drawing.Point(792, 541);
             this.sendButton.Name = "sendButton";
             this.sendButton.Size = new System.Drawing.Size(95, 29);
-            this.sendButton.TabIndex = 6;
+            this.sendButton.TabIndex = 9;
             this.sendButton.Text = "Send Now";
             this.sendButton.UseVisualStyleBackColor = true;
             this.sendButton.Click += new System.EventHandler(this.sendButton_Click);
@@ -732,7 +730,7 @@
             this.label1.Location = new System.Drawing.Point(6, 148);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(78, 20);
-            this.label1.TabIndex = 10;
+            this.label1.TabIndex = 0;
             this.label1.Text = "Message:";
             // 
             // messageRichTextBox
@@ -788,7 +786,7 @@
             this.subjectLabel.Location = new System.Drawing.Point(3, 116);
             this.subjectLabel.Name = "subjectLabel";
             this.subjectLabel.Size = new System.Drawing.Size(67, 20);
-            this.subjectLabel.TabIndex = 3;
+            this.subjectLabel.TabIndex = 0;
             this.subjectLabel.Text = "Subject:";
             // 
             // label3
@@ -797,7 +795,7 @@
             this.label3.Location = new System.Drawing.Point(3, 80);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(44, 20);
-            this.label3.TabIndex = 2;
+            this.label3.TabIndex = 0;
             this.label3.Text = "Bcc: ";
             // 
             // ccLabel
@@ -806,7 +804,7 @@
             this.ccLabel.Location = new System.Drawing.Point(3, 46);
             this.ccLabel.Name = "ccLabel";
             this.ccLabel.Size = new System.Drawing.Size(32, 20);
-            this.ccLabel.TabIndex = 1;
+            this.ccLabel.TabIndex = 0;
             this.ccLabel.Text = "Cc:";
             // 
             // toLabel
@@ -837,7 +835,7 @@
             this.messageOperationsTextBox.Multiline = true;
             this.messageOperationsTextBox.Name = "messageOperationsTextBox";
             this.messageOperationsTextBox.Size = new System.Drawing.Size(879, 456);
-            this.messageOperationsTextBox.TabIndex = 17;
+            this.messageOperationsTextBox.TabIndex = 0;
             this.messageOperationsTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // panel9
@@ -863,7 +861,7 @@
             this.label5.Location = new System.Drawing.Point(4, 6);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(103, 20);
-            this.label5.TabIndex = 9;
+            this.label5.TabIndex = 0;
             this.label5.Text = "Message ID: ";
             // 
             // retractButton
@@ -910,7 +908,7 @@
             this.label4.Location = new System.Drawing.Point(12, 6);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(103, 20);
-            this.label4.TabIndex = 7;
+            this.label4.TabIndex = 0;
             this.label4.Text = "Message ID: ";
             // 
             // deleteButton
@@ -955,7 +953,7 @@
             this.label2.Location = new System.Drawing.Point(9, 27);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(168, 20);
-            this.label2.TabIndex = 5;
+            this.label2.TabIndex = 0;
             this.label2.Text = "Destination Folder ID: ";
             // 
             // messageIDLabel2
@@ -964,7 +962,7 @@
             this.messageIDLabel2.Location = new System.Drawing.Point(9, 3);
             this.messageIDLabel2.Name = "messageIDLabel2";
             this.messageIDLabel2.Size = new System.Drawing.Size(103, 20);
-            this.messageIDLabel2.TabIndex = 4;
+            this.messageIDLabel2.TabIndex = 0;
             this.messageIDLabel2.Text = "Message ID: ";
             // 
             // moveButton
@@ -1003,7 +1001,27 @@
             this.panel12.Location = new System.Drawing.Point(522, 0);
             this.panel12.Name = "panel12";
             this.panel12.Size = new System.Drawing.Size(344, 157);
-            this.panel12.TabIndex = 3;
+            this.panel12.TabIndex = 4;
+            // 
+            // getGroupInboxUnread
+            // 
+            this.getGroupInboxUnread.Location = new System.Drawing.Point(231, 59);
+            this.getGroupInboxUnread.Name = "getGroupInboxUnread";
+            this.getGroupInboxUnread.Size = new System.Drawing.Size(108, 92);
+            this.getGroupInboxUnread.TabIndex = 4;
+            this.getGroupInboxUnread.Text = "Get Group Inbox (Unread)";
+            this.getGroupInboxUnread.UseVisualStyleBackColor = true;
+            this.getGroupInboxUnread.Click += new System.EventHandler(this.getGroupInboxUnread_Click);
+            // 
+            // getGroupInbox
+            // 
+            this.getGroupInbox.Location = new System.Drawing.Point(117, 59);
+            this.getGroupInbox.Name = "getGroupInbox";
+            this.getGroupInbox.Size = new System.Drawing.Size(108, 92);
+            this.getGroupInbox.TabIndex = 3;
+            this.getGroupInbox.Text = "Get Group Inbox";
+            this.getGroupInbox.UseVisualStyleBackColor = true;
+            this.getGroupInbox.Click += new System.EventHandler(this.getGroupInbox_Click);
             // 
             // getGroupMessageSummaries
             // 
@@ -1021,7 +1039,7 @@
             this.lastMessageIdReceivedLabel.Location = new System.Drawing.Point(-1, 4);
             this.lastMessageIdReceivedLabel.Name = "lastMessageIdReceivedLabel";
             this.lastMessageIdReceivedLabel.Size = new System.Drawing.Size(201, 20);
-            this.lastMessageIdReceivedLabel.TabIndex = 1;
+            this.lastMessageIdReceivedLabel.TabIndex = 0;
             this.lastMessageIdReceivedLabel.Text = "Last Message Id Received:";
             // 
             // lastMessageIdReceivedTextBox
@@ -1029,7 +1047,7 @@
             this.lastMessageIdReceivedTextBox.Location = new System.Drawing.Point(3, 27);
             this.lastMessageIdReceivedTextBox.Name = "lastMessageIdReceivedTextBox";
             this.lastMessageIdReceivedTextBox.Size = new System.Drawing.Size(336, 26);
-            this.lastMessageIdReceivedTextBox.TabIndex = 0;
+            this.lastMessageIdReceivedTextBox.TabIndex = 1;
             // 
             // panel11
             // 
@@ -1038,7 +1056,7 @@
             this.panel11.Location = new System.Drawing.Point(265, 43);
             this.panel11.Name = "panel11";
             this.panel11.Size = new System.Drawing.Size(251, 114);
-            this.panel11.TabIndex = 5;
+            this.panel11.TabIndex = 3;
             // 
             // getGroupInboxMIDButton
             // 
@@ -1056,7 +1074,7 @@
             this.mustHaveAttachmentsCheckBox.Location = new System.Drawing.Point(3, 8);
             this.mustHaveAttachmentsCheckBox.Name = "mustHaveAttachmentsCheckBox";
             this.mustHaveAttachmentsCheckBox.Size = new System.Drawing.Size(199, 24);
-            this.mustHaveAttachmentsCheckBox.TabIndex = 4;
+            this.mustHaveAttachmentsCheckBox.TabIndex = 1;
             this.mustHaveAttachmentsCheckBox.Text = "Must Have Attachments";
             this.mustHaveAttachmentsCheckBox.UseVisualStyleBackColor = true;
             // 
@@ -1065,7 +1083,7 @@
             this.showGroupBoxButton.Location = new System.Drawing.Point(265, 6);
             this.showGroupBoxButton.Name = "showGroupBoxButton";
             this.showGroupBoxButton.Size = new System.Drawing.Size(140, 31);
-            this.showGroupBoxButton.TabIndex = 3;
+            this.showGroupBoxButton.TabIndex = 2;
             this.showGroupBoxButton.Text = "Show Groupbox";
             this.showGroupBoxButton.UseVisualStyleBackColor = true;
             this.showGroupBoxButton.Click += new System.EventHandler(this.showGroupBoxButton_Click);
@@ -1081,12 +1099,22 @@
             this.panel3.Size = new System.Drawing.Size(251, 114);
             this.panel3.TabIndex = 2;
             // 
+            // addDelegateButton
+            // 
+            this.addDelegateButton.Location = new System.Drawing.Point(3, 59);
+            this.addDelegateButton.Name = "addDelegateButton";
+            this.addDelegateButton.Size = new System.Drawing.Size(108, 49);
+            this.addDelegateButton.TabIndex = 2;
+            this.addDelegateButton.Text = "Add Delegate";
+            this.addDelegateButton.UseVisualStyleBackColor = true;
+            this.addDelegateButton.Click += new System.EventHandler(this.addDelegateButton_Click);
+            // 
             // deleteDelegateButton
             // 
             this.deleteDelegateButton.Location = new System.Drawing.Point(140, 59);
             this.deleteDelegateButton.Name = "deleteDelegateButton";
             this.deleteDelegateButton.Size = new System.Drawing.Size(108, 49);
-            this.deleteDelegateButton.TabIndex = 2;
+            this.deleteDelegateButton.TabIndex = 3;
             this.deleteDelegateButton.Text = "Delete Delegate";
             this.deleteDelegateButton.UseVisualStyleBackColor = true;
             this.deleteDelegateButton.Click += new System.EventHandler(this.deleteDelegateButton_Click);
@@ -1097,7 +1125,7 @@
             this.delegateAddressLabel.Location = new System.Drawing.Point(3, 4);
             this.delegateAddressLabel.Name = "delegateAddressLabel";
             this.delegateAddressLabel.Size = new System.Drawing.Size(141, 20);
-            this.delegateAddressLabel.TabIndex = 1;
+            this.delegateAddressLabel.TabIndex = 0;
             this.delegateAddressLabel.Text = "Delegate Address:";
             // 
             // delegateAddressTextBox
@@ -1105,7 +1133,7 @@
             this.delegateAddressTextBox.Location = new System.Drawing.Point(3, 27);
             this.delegateAddressTextBox.Name = "delegateAddressTextBox";
             this.delegateAddressTextBox.Size = new System.Drawing.Size(245, 26);
-            this.delegateAddressTextBox.TabIndex = 0;
+            this.delegateAddressTextBox.TabIndex = 1;
             // 
             // showDelegatesButton
             // 
@@ -1124,36 +1152,6 @@
             this.groupBoxRichTextBox.Size = new System.Drawing.Size(879, 396);
             this.groupBoxRichTextBox.TabIndex = 0;
             this.groupBoxRichTextBox.Text = "";
-            // 
-            // addDelegateButton
-            // 
-            this.addDelegateButton.Location = new System.Drawing.Point(3, 59);
-            this.addDelegateButton.Name = "addDelegateButton";
-            this.addDelegateButton.Size = new System.Drawing.Size(108, 49);
-            this.addDelegateButton.TabIndex = 3;
-            this.addDelegateButton.Text = "Add Delegate";
-            this.addDelegateButton.UseVisualStyleBackColor = true;
-            this.addDelegateButton.Click += new System.EventHandler(this.addDelegateButton_Click);
-            // 
-            // getGroupInbox
-            // 
-            this.getGroupInbox.Location = new System.Drawing.Point(117, 59);
-            this.getGroupInbox.Name = "getGroupInbox";
-            this.getGroupInbox.Size = new System.Drawing.Size(108, 92);
-            this.getGroupInbox.TabIndex = 3;
-            this.getGroupInbox.Text = "Get Group Inbox";
-            this.getGroupInbox.UseVisualStyleBackColor = true;
-            this.getGroupInbox.Click += new System.EventHandler(this.getGroupInbox_Click);
-            // 
-            // getGroupInboxUnread
-            // 
-            this.getGroupInboxUnread.Location = new System.Drawing.Point(231, 59);
-            this.getGroupInboxUnread.Name = "getGroupInboxUnread";
-            this.getGroupInboxUnread.Size = new System.Drawing.Size(108, 92);
-            this.getGroupInboxUnread.TabIndex = 4;
-            this.getGroupInboxUnread.Text = "Get Group Inbox (Unread)";
-            this.getGroupInboxUnread.UseVisualStyleBackColor = true;
-            this.getGroupInboxUnread.Click += new System.EventHandler(this.getGroupInboxUnread_Click);
             // 
             // Form1
             // 

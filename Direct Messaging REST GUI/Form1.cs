@@ -734,6 +734,14 @@ namespace Direct_Messaging_REST_GUI
                 int mid = await dmWeb.Message.Send(dmWeb.sendMessagePayload);
                 sendMessageTextBox.Text = string.Format("MessageId: {0}", mid);
 
+                toTextBox.Text = "";
+                ccTextBox.Text = "";
+                bccTextBox.Text = "";
+                subjectTextBox.Text = "";
+                messageRichTextBox.Text = "";
+                sendMessageListBox.Items.Clear();
+                dmWeb.sendMessagePayload.Attachments.Clear();
+
                 EndWaitCursor();
             }
             catch (Exception ex)
@@ -797,9 +805,8 @@ namespace Direct_Messaging_REST_GUI
             }
             else
             {
+                dmWeb.sendMessagePayload.Attachments.RemoveAt(sendMessageListBox.SelectedIndex);
                 sendMessageListBox.Items.RemoveAt(sendMessageListBox.SelectedIndex);
-
-                dmWeb.sendMessagePayload.Attachments.RemoveAt(sendMessageListBox.SelectedIndex + 1);
 
                 EndWaitCursor();
             }
@@ -1105,13 +1112,13 @@ namespace Direct_Messaging_REST_GUI
 
             if (lastMessageIdReceivedTextBox.Text != "")
             {
-                if (int.TryParse(lastMessageIdTextBox.Text, out temp) != false)
+                if (int.TryParse(lastMessageIdReceivedTextBox.Text, out temp) != false)
                 {
-                    string mid = lastMessageIdTextBox.Text;
+                    int mid = int.Parse(lastMessageIdReceivedTextBox.Text);
 
                     try
                     {
-                        response = await dmWeb.GroupInbox.GroupInbox(mid);
+                        response = await dmWeb.GroupInbox.GroupInbox(mid.ToString());
 
                         EndWaitCursor();
                     }
@@ -1172,13 +1179,13 @@ namespace Direct_Messaging_REST_GUI
 
             if (lastMessageIdReceivedTextBox.Text != "")
             {
-                if (int.TryParse(lastMessageIdTextBox.Text, out temp) != false)
+                if (int.TryParse(lastMessageIdReceivedTextBox.Text, out temp) != false)
                 {
-                    string mid = lastMessageIdTextBox.Text;
+                    int mid = int.Parse(lastMessageIdReceivedTextBox.Text);
 
                     try
                     {
-                        response = await dmWeb.GroupInbox.GetGroupInboxUnread(mid);
+                        response = await dmWeb.GroupInbox.GetGroupInboxUnread(mid.ToString());
 
                         EndWaitCursor();
                     }
