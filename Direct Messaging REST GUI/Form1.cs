@@ -143,7 +143,7 @@ namespace Direct_Messaging_REST_GUI
             accountTextBox.Text += string.Format("\tDate of Last Visit: {0}\r\n", response.Statistics.DateOfLastVisit);
             accountTextBox.Text += string.Format("\tDate Password Expires: {0}\r\n", response.Statistics.DatePasswordExpires);
             accountTextBox.Text += string.Format("\tTotal Files In Outbox: {0}\r\n", response.Statistics.TotalFilesInOutbox);
-            accountTextBox.Text += string.Format("\tTotal Files Sent: {0}", response.Statistics.TotalFilesSent);
+            accountTextBox.Text += string.Format("\tTotal Files Sent: {0}\r\n", response.Statistics.TotalFilesSent);
             accountTextBox.Text += string.Format("\tTotal Messages In Inbox: {0}\r\n", response.Statistics.TotalMessagesInInbox);
             accountTextBox.Text += string.Format("\tTotal Messages In Outbox: {0}\r\n", response.Statistics.TotalMessagesInOutbox);
             accountTextBox.Text += string.Format("\tTotal Messages Received: {0}\r\n", response.Statistics.TotalMessagesReceived);
@@ -783,8 +783,8 @@ namespace Direct_Messaging_REST_GUI
             if (readMessageListBox.SelectedItem != null)
             {
                 string fileName = readMessageListBox.GetItemText(readMessageListBox.SelectedItem);
-                string fileType = Path.GetExtension(fileName);
-                fileName += fileType;
+                //string fileType = Path.GetExtension(fileName);
+                //fileName += fileType;
 
                 dmWeb.ConvertFromBase64(dmWeb._base64[readMessageListBox.SelectedIndex], fileName);
             }
