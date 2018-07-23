@@ -704,49 +704,49 @@ namespace Direct_Messaging_REST_GUI
                 {
                     dmWeb.sendMessagePayload.To.Add(str);
                 }
+
+                string ccString = ccTextBox.Text;
+                string[] ccStringArray = ccString.Split(',');
+                foreach (string str in ccStringArray)
+                {
+                    dmWeb.sendMessagePayload.Cc.Add(str);
+                }
+
+                string bccString = bccTextBox.Text;
+                string[] bccStringArray = bccString.Split(',');
+                foreach (string str in bccStringArray)
+                {
+                    dmWeb.sendMessagePayload.Bcc.Add(str);
+                }
+                dmWeb.sendMessagePayload.Subject = subjectTextBox.Text;
+                dmWeb.sendMessagePayload.TextBody = messageRichTextBox.Text;
+
+                try
+                {
+                    int mid = await dmWeb.Message.Send(dmWeb.sendMessagePayload);
+                    sendMessageTextBox.Text = string.Format("MessageId: {0}", mid);
+
+                    toTextBox.Text = "";
+                    ccTextBox.Text = "";
+                    bccTextBox.Text = "";
+                    subjectTextBox.Text = "";
+                    messageRichTextBox.Text = "";
+                    sendMessageListBox.Items.Clear();
+                    dmWeb.sendMessagePayload.Attachments.Clear();
+
+                    EndWaitCursor();
+                }
+                catch (Exception ex)
+                {
+                    sendMessageTextBox.Text = ex.Message;
+
+                    EndWaitCursor();
+                    return;
+                }
             }
             else
             {
                 sendMessageTextBox.Text = "Enter an email to send to.";
-
-                EndWaitCursor();
-                return;
-            }
-
-            string ccString = ccTextBox.Text;
-            string[] ccStringArray = ccString.Split(',');
-            foreach (string str in ccStringArray)
-            {
-                dmWeb.sendMessagePayload.Cc.Add(str);
-            }
-
-            string bccString = bccTextBox.Text;
-            string[] bccStringArray = bccString.Split(',');
-            foreach (string str in bccStringArray)
-            {
-                dmWeb.sendMessagePayload.Bcc.Add(str);
-            }
-            dmWeb.sendMessagePayload.Subject = subjectTextBox.Text;
-            dmWeb.sendMessagePayload.TextBody = messageRichTextBox.Text;
-
-            try
-            {
-                int mid = await dmWeb.Message.Send(dmWeb.sendMessagePayload);
-                sendMessageTextBox.Text = string.Format("MessageId: {0}", mid);
-
-                toTextBox.Text = "";
-                ccTextBox.Text = "";
-                bccTextBox.Text = "";
-                subjectTextBox.Text = "";
-                messageRichTextBox.Text = "";
-                sendMessageListBox.Items.Clear();
-                dmWeb.sendMessagePayload.Attachments.Clear();
-
-                EndWaitCursor();
-            }
-            catch (Exception ex)
-            {
-                sendMessageTextBox.Text = ex.Message;
 
                 EndWaitCursor();
                 return;
