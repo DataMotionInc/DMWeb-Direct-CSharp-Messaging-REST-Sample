@@ -397,10 +397,10 @@ namespace Direct_Messaging_REST_GUI
                     messageSummariesTextBox.Text += string.Format("\tMessage Id: {0}\r\n", response.Summaries[i].MessageId);
                     messageSummariesTextBox.Text += string.Format("\tFolder Id: {0}\r\n", response.Summaries[i].FolderId);
                     messageSummariesTextBox.Text += string.Format("\tCreate Time String: {0}\r\n", response.Summaries[i].createTimeString);
-                    messageSummariesTextBox.Text += string.Format("\tRead: {0}\r\n\r\n", response.Summaries[i].Read);
-                    //messageSummariesTextBox.Text += string.Format("\tAttachment Count: {0}\r\n", response.Summaries[i].Subject);
-                    //messageSummariesTextBox.Text += string.Format("\tMessage Size: {0}\r\n", response.Summaries[i].Subject);
-                    //messageSummariesTextBox.Text += string.Format("\tMessage Status: {0}\r\n", response.Summaries[i].Subject);
+                    messageSummariesTextBox.Text += string.Format("\tRead: {0}\r\n", response.Summaries[i].Read);
+                    messageSummariesTextBox.Text += string.Format("\tAttachment Count: {0}\r\n", response.Summaries[i].AttachmentCount);
+                    messageSummariesTextBox.Text += string.Format("\tMessage Size: {0}\r\n", response.Summaries[i].MessageSize);
+                    messageSummariesTextBox.Text += string.Format("\tMessage Status: {0}\r\n", response.Summaries[i].MessageStatus);
                 }
 
                 EndWaitCursor();
