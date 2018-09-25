@@ -1,15 +1,15 @@
 ﻿using System;
 using System.Windows.Forms;
 using System.IO;
-using Direct_Messaging_SDK_461;
-using Direct_Messaging_SDK_461.Models;
+using DMWeb_REST;
+using DMWeb_REST.Models;
 using System.Text.RegularExpressions;
 
 namespace Direct_Messaging_REST_GUI
 {
     public partial class Form1 : Form
     {
-        DM_DirectMessaging_461 dmWeb = new DM_DirectMessaging_461();
+        DMWeb dmWeb = new DMWeb();
 
         public Form1()
         {
@@ -27,6 +27,36 @@ namespace Direct_Messaging_REST_GUI
             this.UseWaitCursor = false;
             Cursor.Current = Cursors.Default;
         }
+
+        /// <summary>
+        /// Used to convert a file to Base64 string
+        /// </summary>
+        /// <param name="location">string of file location</param>
+        /// <returns></returns>
+        public string ConvertToBase64(string location)
+        {
+            byte[] imageArray = System.IO.File.ReadAllBytes(location);
+            string _base64 = Convert.ToBase64String(imageArray);
+            return _base64;
+        }
+
+        /// <summary>
+        /// Used to convert base64 string into original file with choice of save location
+        /// </summary>
+        /// <param name="_base64">string base64</param>
+        /// <param name="FileName">string file name</param>
+        public void ConvertFromBase64(string _base64, string FileName)
+        {
+            byte[] imageBytes = Convert.FromBase64String(_base64);
+
+            SaveFileDialog dlg = new SaveFileDialog();
+            //string type = Path.GetExtension(dlg.FileName);
+            dlg.FileName = FileName;
+            dlg.ShowDialog();
+
+            System.IO.FileInfo location = new System.IO.FileInfo(dlg.FileName);
+            File.WriteAllBytes(location.ToString(), imageBytes);
+        }
         // This button passes the user's email and password to the base URL of their choice to obtain a Session Key
         private async void logOnButton_Click(object sender, EventArgs e)
         {
@@ -41,11 +71,11 @@ namespace Direct_Messaging_REST_GUI
             string baseUrl = baseUrlTextBox.Text;
             if (baseUrl == "")
             {
-                dmWeb = new DM_DirectMessaging_461();
+                dmWeb = new DMWeb();
             }
             else
             {
-                dmWeb = new DM_DirectMessaging_461(baseUrl);
+                dmWeb = new DMWeb(baseUrl);
             }
 
             if (user.UserIdOrEmail != "" && user.Password != "")
@@ -162,7 +192,7 @@ namespace Direct_Messaging_REST_GUI
 
             listFoldersTextBox.Text = "";
 
-            Folders.Folder response = new Folders.Folder();
+            Folders.ListFolders response = new Folders.ListFolders();
 
             try
             {
@@ -765,7 +795,7 @@ namespace Direct_Messaging_REST_GUI
             foreach (string file in dlg.FileNames)
             {
                 System.IO.FileInfo location = new System.IO.FileInfo(file);
-                string base64String = dmWeb.ConvertToBase64(location.ToString());
+                string base64String = ConvertToBase64(location.ToString());
 
                 dmWeb.sendMessagePayload.Attachments.Add(new Messaging.AttachmentsBody() { AttachmentBase64 = base64String, ContentType = Path.GetExtension(file), FileName = Path.GetFileName(file) });
 
@@ -786,7 +816,7 @@ namespace Direct_Messaging_REST_GUI
                 //string fileType = Path.GetExtension(fileName);
                 //fileName += fileType;
 
-                dmWeb.ConvertFromBase64(dmWeb._base64[readMessageListBox.SelectedIndex], fileName);
+                ConvertFromBase64(dmWeb._base64[readMessageListBox.SelectedIndex], fileName);
             }
 
             EndWaitCursor();
