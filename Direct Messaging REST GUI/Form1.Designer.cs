@@ -288,7 +288,7 @@
             this.baseUrlTextBox.Name = "baseUrlTextBox";
             this.baseUrlTextBox.Size = new System.Drawing.Size(405, 26);
             this.baseUrlTextBox.TabIndex = 4;
-            this.baseUrlTextBox.Text = "https://directbeta.datamotion.com/SecureMessagingAPI";
+            this.baseUrlTextBox.Text = "https://ssl.dmhisp.com/SecureMessagingAPI";
             // 
             // urlLabel
             // 
