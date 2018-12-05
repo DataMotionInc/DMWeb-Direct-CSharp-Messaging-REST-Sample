@@ -96,7 +96,7 @@ namespace Direct_Messaging_REST_GUI
                 }
                 catch (Exception ex)
                 {
-                    accountTextBox.Text = "Invalid credentials";
+                    accountTextBox.Text = ex.Message;
                     usernameTextBox.Text = "";
                     passwordTextBox.Text = "";
 
