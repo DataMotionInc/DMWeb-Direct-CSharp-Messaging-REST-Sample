@@ -4,6 +4,7 @@ using System.IO;
 using DMWeb_REST;
 using DMWeb_REST.Models;
 using System.Text.RegularExpressions;
+using System.Diagnostics;
 
 namespace Direct_Messaging_REST_GUI
 {
@@ -61,6 +62,7 @@ namespace Direct_Messaging_REST_GUI
         private async void logOnButton_Click(object sender, EventArgs e)
         {
             StartWaitCursor();
+            Stopwatch stopwatch = new Stopwatch();
 
             Account.LogOn user = new Account.LogOn();
             string response = "";
@@ -82,8 +84,12 @@ namespace Direct_Messaging_REST_GUI
             {
                 try
                 {
+                    stopwatch.Start();
                     response = await dmWeb.Account.LogOn(user);
-                    accountTextBox.Text = string.Format("Session Key: {0}", response);
+                    stopwatch.Stop();
+
+                    accountTextBox.Text = string.Format("Log On Time Elapsed: {0}\r\n\r\n", stopwatch.Elapsed);
+                    accountTextBox.Text += string.Format("Session Key: {0}", response);
 
                     usernameTextBox.Text = "";
                     passwordTextBox.Text = "";
@@ -96,7 +102,8 @@ namespace Direct_Messaging_REST_GUI
                 }
                 catch (Exception ex)
                 {
-                    accountTextBox.Text = ex.Message;
+                    accountTextBox.Text = string.Format("Log On Time Elapsed: {0}\r\n\r\n", stopwatch.Elapsed);
+                    accountTextBox.Text += ex.Message;
                     usernameTextBox.Text = "";
                     passwordTextBox.Text = "";
 
@@ -117,19 +124,24 @@ namespace Direct_Messaging_REST_GUI
         private async void logoutButton_Click(object sender, EventArgs e)
         {
             StartWaitCursor();
+            Stopwatch stopwatch = new Stopwatch();
 
             string response = "";
 
             try
             {
+                stopwatch.Start();
                 response = await dmWeb.Account.LogOut();
-                accountTextBox.Text = "Log Out successful";
+                stopwatch.Stop();
+                accountTextBox.Text = string.Format("Log Out Time Elapsed: {0}\r\n\r\n", stopwatch.Elapsed);
+                accountTextBox.Text += "Log Out successful";
 
                 EndWaitCursor();
             }
             catch (Exception ex)
             {
-                accountTextBox.Text = ex.Message;
+                accountTextBox.Text = string.Format("Log Out Time Elapsed: {0}\r\n\r\n", stopwatch.Elapsed);
+                accountTextBox.Text += ex.Message;
 
                 EndWaitCursor();
             }
@@ -144,24 +156,30 @@ namespace Direct_Messaging_REST_GUI
         public async void accountDetails_Click(object sender, EventArgs e)
         {
             StartWaitCursor();
+            Stopwatch stopwatch = new Stopwatch();
 
             Account.AccountDetails response = new Account.AccountDetails();
 
             try
             {
+                stopwatch.Start();
                 response = await dmWeb.Account.Details();
+                stopwatch.Stop();
 
                 EndWaitCursor();
             }
             catch (Exception ex)
             {
-                accountTextBox.Text = ex.Message;
+                accountTextBox.Text = string.Format("Get Account Details Time Elapsed: {0}\r\n\r\n", stopwatch.Elapsed);
+                accountTextBox.Text += ex.Message;
 
                 EndWaitCursor();
                 return;
             }
 
-            accountTextBox.Text = string.Format("Email: {0}\r\n", response.EmailAddress);
+            accountTextBox.Text = string.Format("Get Account Details Time Elapsed: {0}\r\n\r\n", stopwatch.Elapsed);
+
+            accountTextBox.Text += string.Format("Email: {0}\r\n", response.EmailAddress);
             accountTextBox.Text += string.Format("First Name: {0}\r\n", response.FirstName);
             accountTextBox.Text += string.Format("Last Name: {0}\r\n", response.LastName);
 
@@ -189,6 +207,7 @@ namespace Direct_Messaging_REST_GUI
         private async void listFolderButton_Click(object sender, EventArgs e)
         {
             StartWaitCursor();
+            Stopwatch stopwatch = new Stopwatch();
 
             listFoldersTextBox.Text = "";
 
@@ -198,18 +217,23 @@ namespace Direct_Messaging_REST_GUI
             {
                 try
                 {
+                    stopwatch.Start();
                     response = await dmWeb.Folders.List();
+                    stopwatch.Stop();
 
                     EndWaitCursor();
                 }
                 catch (Exception ex)
                 {
-                    listFoldersTextBox.Text = ex.Message;
+                    listFoldersTextBox.Text = string.Format("List Folders Time Elapsed: {0}\r\n\r\n", stopwatch.Elapsed);
+                    listFoldersTextBox.Text += ex.Message;
 
                     EndWaitCursor();
                     return;
                 }
 
+
+                listFoldersTextBox.Text = string.Format("List Folders Time Elapsed: {0}\r\n\r\n", stopwatch.Elapsed);
                 int folderArrayLength = response.Folders.Count;
                 for (int i = 0; i < folderArrayLength; i++)
                 {
@@ -234,6 +258,7 @@ namespace Direct_Messaging_REST_GUI
         private async void createFolderButton_Click(object sender, EventArgs e)
         {
             StartWaitCursor();
+            Stopwatch stopwatch = new Stopwatch();
 
             Folders.Create user = new Folders.Create();
             string response = "";
@@ -262,16 +287,21 @@ namespace Direct_Messaging_REST_GUI
 
                         try
                         {
+                            stopwatch.Start();
                             response = await dmWeb.Folders.Create(user);
+                            stopwatch.Stop();
+
                             folderNameTextBox.Text = "";
                             folderTypeTextBox.Text = "";
-                            listFoldersTextBox.Text = string.Format("Newly Created Folder Id: {0}", response);
+                            listFoldersTextBox.Text = string.Format("Create Folder Time Elapsed: {0}\r\n\r\n", stopwatch.Elapsed);
+                            listFoldersTextBox.Text += string.Format("Newly Created Folder Id: {0}", response);
 
                             EndWaitCursor();
                         }
                         catch (Exception ex)
                         {
-                            listFoldersTextBox.Text = ex.Message;
+                            listFoldersTextBox.Text = string.Format("Create Folder Time Elapsed: {0}\r\n\r\n", stopwatch.Elapsed);
+                            listFoldersTextBox.Text += ex.Message;
 
                             EndWaitCursor();
                             return;
@@ -294,6 +324,7 @@ namespace Direct_Messaging_REST_GUI
         private async void deleteFolder_Click(object sender, EventArgs e)
         {
             StartWaitCursor();
+            Stopwatch stopwatch = new Stopwatch();
 
             string response = "";
             int temp;
@@ -305,15 +336,20 @@ namespace Direct_Messaging_REST_GUI
                 {
                     try
                     {
+                        stopwatch.Start();
                         response = await dmWeb.Folders.Delete(FolderID);
+                        stopwatch.Stop();
+
                         folderIDTextBox.Text = "";
-                        listFoldersTextBox.Text = "Folder successfully deleted.";
+                        listFoldersTextBox.Text = string.Format("Delete Folder Time Elapsed:{0}\r\n\r\n", stopwatch.Elapsed);
+                        listFoldersTextBox.Text += "Folder successfully deleted.";
 
                         EndWaitCursor();
                     }
                     catch (Exception ex)
                     {
-                        listFoldersTextBox.Text = ex.Message;
+                        listFoldersTextBox.Text = string.Format("Delete Folder Time Elapsed:{0}\r\n\r\n", stopwatch.Elapsed);
+                        listFoldersTextBox.Text += ex.Message;
 
                         EndWaitCursor();
                         return;
@@ -340,6 +376,7 @@ namespace Direct_Messaging_REST_GUI
         private async void getMessageSummariesButton_Click(object sender, EventArgs e)
         {
             StartWaitCursor();
+            Stopwatch stopwatch = new Stopwatch();
 
             messageSummariesTextBox.Text = "";
 
@@ -379,7 +416,10 @@ namespace Direct_Messaging_REST_GUI
 
                             try
                             {
+                                stopwatch.Start();
                                 response = await dmWeb.Message.GetMessageSummaries(user);
+                                stopwatch.Stop();
+
                                 folderIDTextBox2.Text = "";
                                 lastMessageIdTextBox.Text = "";
 
@@ -387,7 +427,8 @@ namespace Direct_Messaging_REST_GUI
                             }
                             catch (Exception ex)
                             {
-                                messageSummariesTextBox.Text = ex.Message;
+                                messageSummariesTextBox.Text = string.Format("Get Message Summaries Time Elapsed: {0}\r\n\r\n", stopwatch.Elapsed);
+                                messageSummariesTextBox.Text += ex.Message;
 
                                 EndWaitCursor();
                                 return;
@@ -408,7 +449,8 @@ namespace Direct_Messaging_REST_GUI
                         }
                         catch (Exception ex)
                         {
-                            messageSummariesTextBox.Text = ex.Message;
+                            messageSummariesTextBox.Text = string.Format("Get Message Summaries Time Elapsed: {0}\r\n\r\n", stopwatch.Elapsed);
+                            messageSummariesTextBox.Text += ex.Message;
 
                             EndWaitCursor();
                             return;
@@ -419,7 +461,7 @@ namespace Direct_Messaging_REST_GUI
                 int arrayLength = response.Summaries.Count;
 
                 //messageSummariesTextBox.Text += string.Format("More Messages Available: {0}\r\n", response.MoreMessagesAvailable);
-
+                messageSummariesTextBox.Text = string.Format("Get Message Summaries Time Elapsed: {0}\r\n\r\n", stopwatch.Elapsed);
                 for (int i = arrayLength - 1; i >= 0; i--)
                 {
                     messageSummariesTextBox.Text += string.Format("Subject: {0}\r\n", response.Summaries[i].Subject);
@@ -441,6 +483,7 @@ namespace Direct_Messaging_REST_GUI
         private async void newReadMessageSubmitButton_Click(object sender, EventArgs e)
         {
             StartWaitCursor();
+            Stopwatch stopwatch = new Stopwatch();
 
             readMessageTextBox.Text = "";
             readMessageListBox.Items.Clear();
@@ -457,19 +500,23 @@ namespace Direct_Messaging_REST_GUI
                 {
                     try
                     {
+                        stopwatch.Start();
                         messageResponse = await dmWeb.Message.Get(messageId);
+                        stopwatch.Stop();
                         messageIDTextBox.Text = "";
 
                         EndWaitCursor();
                     }
                     catch (Exception ex)
                     {
-                        readMessageTextBox.Text = ex.Message;
+                        readMessageTextBox.Text = string.Format("Get Message returned MID {0} in Elapsed Time: {1}\r\n\r\n", messageId, stopwatch.Elapsed);
+                        readMessageTextBox.Text += ex.Message;
 
                         EndWaitCursor();
                         return;
                     }
 
+                    readMessageTextBox.Text = string.Format("Get Message returned MID {0} in Elapsed Time: {1}\r\n\r\n", messageId, stopwatch.Elapsed);
                     int toArrayLength = messageResponse.To.Count;
                     int ccArrayLength = messageResponse.Cc.Count;
                     int bccArrayLength = messageResponse.Bcc.Count;
@@ -529,6 +576,7 @@ namespace Direct_Messaging_REST_GUI
         private async void passwordChangeButton_Click(object sender, EventArgs e)
         {
             StartWaitCursor();
+            Stopwatch stopwatch = new Stopwatch();
 
             Account.ChangePassword user = new Account.ChangePassword();
             string response = "";
@@ -540,14 +588,19 @@ namespace Direct_Messaging_REST_GUI
             {
                 try
                 {
+                    stopwatch.Start();
                     response = await dmWeb.Account.ChangePassword(user);
-                    accountTextBox.Text = response;
+                    stopwatch.Stop();
+
+                    accountTextBox.Text = string.Format("Change Password Time Elapsed: {0}\r\n\r\n", stopwatch.Elapsed);
+                    accountTextBox.Text += response;
 
                     EndWaitCursor();
                 }
                 catch (Exception ex)
                 {
-                    accountTextBox.Text = ex.Message;
+                    accountTextBox.Text = string.Format("Change Password Time Elapsed: {0}\r\n\r\n", stopwatch.Elapsed);
+                    accountTextBox.Text += ex.Message;
 
                     EndWaitCursor();
                 }
@@ -567,6 +620,7 @@ namespace Direct_Messaging_REST_GUI
         private async void moveButton_Click(object sender, EventArgs e)
         {
             StartWaitCursor();
+            Stopwatch stopwatch = new Stopwatch();
 
             Messaging.MoveMessageRequest user = new Messaging.MoveMessageRequest();
             int temp = 0;
@@ -583,16 +637,21 @@ namespace Direct_Messaging_REST_GUI
 
                         try
                         {
+                            stopwatch.Start();
                             response = await dmWeb.Message.Move(user, MessageId.ToString());
+                            stopwatch.Stop();
+
                             messageIDTextBox2.Text = "";
                             destinationFolderIDTextBox.Text = "";
-                            messageOperationsTextBox.Text = "Message moved";
+                            messageOperationsTextBox.Text = string.Format("Move Message Time Elapsed: {0}\r\n\r\n", stopwatch.Elapsed);
+                            messageOperationsTextBox.Text += "Message moved";
 
                             EndWaitCursor();
                         }
                         catch (Exception ex)
                         {
-                            messageOperationsTextBox.Text = ex.Message;
+                            messageOperationsTextBox.Text = string.Format("Move Message Time Elapsed: {0}\r\n\r\n", stopwatch.Elapsed);
+                            messageOperationsTextBox.Text += ex.Message;
 
                             EndWaitCursor();
                             return;
@@ -624,6 +683,7 @@ namespace Direct_Messaging_REST_GUI
         private async void deleteButton_Click(object sender, EventArgs e)
         {
             StartWaitCursor();
+            Stopwatch stopwatch = new Stopwatch();
 
             bool permanentCheck;
             int temp = 0;
@@ -644,20 +704,24 @@ namespace Direct_Messaging_REST_GUI
                     int MessageId = int.Parse(messageIDTextBox3.Text);
                     try
                     {
+                        stopwatch.Start();
                         await dmWeb.Message.Delete(MessageId.ToString(), permanentCheck);
+                        stopwatch.Stop();
                         messageIDTextBox3.Text = "";
 
                         EndWaitCursor();
                     }
                     catch (Exception ex)
                     {
-                        messageOperationsTextBox.Text = ex.Message;
+                        messageOperationsTextBox.Text = string.Format("Delete Message Elapsed Time: {0}\r\n\r\n", stopwatch.Elapsed);
+                        messageOperationsTextBox.Text += ex.Message;
 
                         EndWaitCursor();
                         return;
                     }
 
-                    messageOperationsTextBox.Text = "Message deleted";
+                    messageOperationsTextBox.Text = string.Format("Delete Message Elapsed Time: {0}\r\n\r\n", stopwatch.Elapsed);
+                    messageOperationsTextBox.Text += "Message deleted";
 
                     EndWaitCursor();
                 }
@@ -680,6 +744,7 @@ namespace Direct_Messaging_REST_GUI
         private async void retractButton_Click(object sender, EventArgs e)
         {
             StartWaitCursor();
+            Stopwatch stopwatch = new Stopwatch();
 
             int temp = 0;
 
@@ -690,15 +755,20 @@ namespace Direct_Messaging_REST_GUI
                     int MessageId = int.Parse(messageIDTextBox4.Text);
                     try
                     {
+                        stopwatch.Start();
                         string response = await dmWeb.Message.Retract(MessageId.ToString());
+                        stopwatch.Stop();
+
                         messageIDTextBox4.Text = "";
-                        messageOperationsTextBox.Text = "Message retracted";
+                        messageOperationsTextBox.Text = string.Format("Retract Message Time Elapsed: {0}", stopwatch.Elapsed);
+                        messageOperationsTextBox.Text += "Message retracted";
 
                         EndWaitCursor();
                     }
                     catch (Exception ex)
                     {
-                        messageOperationsTextBox.Text = ex.Message;
+                        messageOperationsTextBox.Text = string.Format("Retract Message Time Elapsed: {0}", stopwatch.Elapsed);
+                        messageOperationsTextBox.Text += ex.Message;
 
                         EndWaitCursor();
                         return;
@@ -725,6 +795,7 @@ namespace Direct_Messaging_REST_GUI
             sendMessageTextBox.Text = "";
 
             StartWaitCursor();
+            Stopwatch stopwatch = new Stopwatch();
 
             if (toTextBox.Text != "")
             {
@@ -753,8 +824,12 @@ namespace Direct_Messaging_REST_GUI
 
                 try
                 {
+                    stopwatch.Start();                    
                     int mid = await dmWeb.Message.Send(dmWeb.sendMessagePayload);
-                    sendMessageTextBox.Text = string.Format("MessageId: {0}", mid);
+                    stopwatch.Stop();
+
+                    sendMessageTextBox.Text = string.Format("Send Message Time Elapsed: {0}\r\n\r\n", stopwatch.Elapsed);
+                    sendMessageTextBox.Text += string.Format("MessageId: {0}", mid);
 
                     toTextBox.Text = "";
                     ccTextBox.Text = "";
@@ -768,7 +843,8 @@ namespace Direct_Messaging_REST_GUI
                 }
                 catch (Exception ex)
                 {
-                    sendMessageTextBox.Text = ex.Message;
+                    sendMessageTextBox.Text = string.Format("Send Message Time Elapsed: {0}\r\n\r\n", stopwatch.Elapsed);
+                    sendMessageTextBox.Text += ex.Message;
 
                     EndWaitCursor();
                     return;
@@ -885,24 +961,29 @@ namespace Direct_Messaging_REST_GUI
             groupBoxRichTextBox.Text = "";
 
             StartWaitCursor();
+            Stopwatch stopwatch = new Stopwatch();
 
             Group_Mailbox.ShowDelegatesResponse response = new Group_Mailbox.ShowDelegatesResponse();
 
             try
             {
+                stopwatch.Start();
                 response = await dmWeb.GroupInbox.ShowDelegates();
+                stopwatch.Stop();
 
                 EndWaitCursor();
             }
             catch (Exception ex)
             {
-                groupBoxRichTextBox.Text = ex.Message;
+                groupBoxRichTextBox.Text = string.Format("Show Delegates Time Elapsed: {0}\r\n\r\n", stopwatch.Elapsed);
+                groupBoxRichTextBox.Text += ex.Message;
 
                 EndWaitCursor();
                 return;
             }
 
-            groupBoxRichTextBox.Text = "Delegates: \r\n";
+            groupBoxRichTextBox.Text = string.Format("Show Delegates Time Elapsed: {0}\r\n\r\n", stopwatch.Elapsed);
+            groupBoxRichTextBox.Text += "Delegates: \r\n";
             int delegateArrayLength = response.Delegates.Length;
             for (int i = 0; i < delegateArrayLength; i++)
             {
@@ -916,6 +997,7 @@ namespace Direct_Messaging_REST_GUI
             string response = "";
 
             StartWaitCursor();
+            Stopwatch stopwatch = new Stopwatch();
 
             if (delegateAddressTextBox.Text != "")
             {
@@ -923,15 +1005,20 @@ namespace Direct_Messaging_REST_GUI
 
                 try
                 {
+                    stopwatch.Start();
                     response = await dmWeb.GroupInbox.DeleteDelegate(delegateAddress);
-                    groupBoxRichTextBox.Text = "Delegated deleted";
+                    stopwatch.Stop();
+
+                    groupBoxRichTextBox.Text = string.Format("Delete Delegate Time Elapsed: {0}\r\n\r\n", stopwatch.Elapsed);
+                    groupBoxRichTextBox.Text += "Delegated deleted";
                     delegateAddressTextBox.Text = "";
 
                     EndWaitCursor();
                 }
                 catch (Exception ex)
                 {
-                    groupBoxRichTextBox.Text = ex.Message;
+                    groupBoxRichTextBox.Text = string.Format("Delete Delegate Time Elapsed: {0}\r\n\r\n", stopwatch.Elapsed);
+                    groupBoxRichTextBox.Text += ex.Message;
 
                     EndWaitCursor();
                     return;
@@ -949,6 +1036,7 @@ namespace Direct_Messaging_REST_GUI
             string response = "";
 
             StartWaitCursor();
+            Stopwatch stopwatch = new Stopwatch();
 
             if (delegateAddressTextBox.Text != "")
             {
@@ -956,15 +1044,20 @@ namespace Direct_Messaging_REST_GUI
 
                 try
                 {
+                    stopwatch.Start();
                     response = await dmWeb.GroupInbox.AddDelegate(request);
-                    groupBoxRichTextBox.Text = "Delegated added";
+                    stopwatch.Stop();
+
+                    groupBoxRichTextBox.Text = string.Format("Add Delegate Time Elapsed: {0}\r\n\r\n", stopwatch.Elapsed);
+                    groupBoxRichTextBox.Text += "Delegated added";
                     delegateAddressTextBox.Text = "";
 
                     EndWaitCursor();
                 }
                 catch (Exception ex)
                 {
-                    groupBoxRichTextBox.Text = ex.Message;
+                    groupBoxRichTextBox.Text = string.Format("Add Delegate Time Elapsed: {0}\r\n\r\n", stopwatch.Elapsed);
+                    groupBoxRichTextBox.Text += ex.Message;
 
                     EndWaitCursor();
                     return;
@@ -983,21 +1076,26 @@ namespace Direct_Messaging_REST_GUI
             Group_Mailbox.ShowGroupBoxesResponse response = new Group_Mailbox.ShowGroupBoxesResponse();
 
             StartWaitCursor();
+            Stopwatch stopwatch = new Stopwatch();
 
             try
             {
+                stopwatch.Start();
                 response = await dmWeb.GroupInbox.ShowGroupBoxes();
+                stopwatch.Stop();
 
                 EndWaitCursor();
             }
             catch (Exception ex)
             {
-                groupBoxRichTextBox.Text = ex.Message;
+                groupBoxRichTextBox.Text = string.Format("Show Group Box Time Elapsed: {0}\r\n\r\n", stopwatch.Elapsed);
+                groupBoxRichTextBox.Text += ex.Message;
 
                 EndWaitCursor();
                 return;
             }
 
+            groupBoxRichTextBox.Text = string.Format("Show Group Box Time Elapsed: {0}\r\n\r\n", stopwatch.Elapsed);
             groupBoxRichTextBox.Text += "GroupBoxes: \r\n";
             int groupBoxArrayLength = response.GroupBox.Length;
             for (int i = 0; i < groupBoxArrayLength; i++)
@@ -1015,6 +1113,7 @@ namespace Direct_Messaging_REST_GUI
             Group_Mailbox.GetGroupInboxMIDsResponse response = new Group_Mailbox.GetGroupInboxMIDsResponse();
 
             StartWaitCursor();
+            Stopwatch stopwatch = new Stopwatch();
 
             if (mustHaveAttachmentsCheckBox.Checked == true)
             {
@@ -1022,13 +1121,16 @@ namespace Direct_Messaging_REST_GUI
 
                 try
                 {
+                    stopwatch.Start();
                     response = await dmWeb.GroupInbox.GetGroupInboxMessageIds(request);
+                    stopwatch.Stop();
 
                     EndWaitCursor();
                 }
                 catch (Exception ex)
                 {
-                    groupBoxRichTextBox.Text = ex.Message;
+                    groupBoxRichTextBox.Text = string.Format("Get Group Inbox MID Time Elapsed: {0}\r\n\r\n", stopwatch.Elapsed);
+                    groupBoxRichTextBox.Text += ex.Message;
 
                     EndWaitCursor();
                     return;
@@ -1040,19 +1142,23 @@ namespace Direct_Messaging_REST_GUI
 
                 try
                 {
+                    stopwatch.Start();
                     response = await dmWeb.GroupInbox.GetGroupInboxMessageIds(request);
+                    stopwatch.Stop();
 
                     EndWaitCursor();
                 }
                 catch (Exception ex)
                 {
-                    groupBoxRichTextBox.Text = ex.Message;
+                    groupBoxRichTextBox.Text = string.Format("Get Group Inbox MID Time Elapsed: {0}\r\n\r\n", stopwatch.Elapsed);
+                    groupBoxRichTextBox.Text += ex.Message;
 
                     EndWaitCursor();
                     return;
                 }
             }
 
+            groupBoxRichTextBox.Text = string.Format("Get Group Inbox MID Time Elapsed: {0}\r\n\r\n", stopwatch.Elapsed);
             groupBoxRichTextBox.Text += "Group Inbox MessageIds \r\n";
             int midArrayLength = response.MessageIds.Length;
             for (int i = 0; i < midArrayLength; i++)
@@ -1070,6 +1176,7 @@ namespace Direct_Messaging_REST_GUI
             int temp = 0;
 
             StartWaitCursor();
+            Stopwatch stopwatch = new Stopwatch();
 
             if (lastMessageIdReceivedTextBox.Text != "")
             {
@@ -1079,13 +1186,16 @@ namespace Direct_Messaging_REST_GUI
 
                     try
                     {
+                        stopwatch.Start();
                         response = await dmWeb.GroupInbox.GetGroupMessageSummaries(request);
+                        stopwatch.Stop();
 
                         EndWaitCursor();
                     }
                     catch (Exception ex)
                     {
-                        groupBoxRichTextBox.Text = ex.Message;
+                        groupBoxRichTextBox.Text = string.Format("Get Group Message Summaries Time Elapsed: {0}\r\n\r\n", stopwatch.Elapsed);
+                        groupBoxRichTextBox.Text += ex.Message;
 
                         EndWaitCursor();
                         return;
@@ -1102,20 +1212,24 @@ namespace Direct_Messaging_REST_GUI
 
                 try
                 {
+                    stopwatch.Start();
                     response = await dmWeb.GroupInbox.GetGroupMessageSummaries(request);
+                    stopwatch.Stop();
 
                     EndWaitCursor();
                 }
                 catch (Exception ex)
                 {
-                    groupBoxRichTextBox.Text = ex.Message;
+                    groupBoxRichTextBox.Text = string.Format("Get Group Message Summaries Time Elapsed: {0}\r\n\r\n", stopwatch.Elapsed);
+                    groupBoxRichTextBox.Text += ex.Message;
 
                     EndWaitCursor();
                     return;
                 }
             }
 
-            groupBoxRichTextBox.Text = "Group Message Summaries: \r\n";
+            groupBoxRichTextBox.Text = string.Format("Get Group Message Summaries Time Elapsed: {0}\r\n\r\n", stopwatch.Elapsed);
+            groupBoxRichTextBox.Text += "Group Message Summaries: \r\n";
             groupBoxRichTextBox.Text += string.Format("\tMoreMessagesAvailable: {0}\r\n", response.MoreMessagesAvailable);
             groupBoxRichTextBox.Text += string.Format("\tSummaries: \r\n");
 
@@ -1139,6 +1253,7 @@ namespace Direct_Messaging_REST_GUI
             int temp = 0;
 
             StartWaitCursor();
+            Stopwatch stopwatch = new Stopwatch();
 
             if (lastMessageIdReceivedTextBox.Text != "")
             {
@@ -1148,13 +1263,16 @@ namespace Direct_Messaging_REST_GUI
 
                     try
                     {
+                        stopwatch.Start();
                         response = await dmWeb.GroupInbox.GroupInbox(mid.ToString());
+                        stopwatch.Stop();
 
                         EndWaitCursor();
                     }
                     catch (Exception ex)
                     {
-                        groupBoxRichTextBox.Text = ex.Message;
+                        groupBoxRichTextBox.Text = string.Format("Get Group Inbox Time Elapsed: {0}\r\n\r\n", stopwatch.Elapsed);
+                        groupBoxRichTextBox.Text += ex.Message;
 
                         EndWaitCursor();
                         return;
@@ -1169,20 +1287,23 @@ namespace Direct_Messaging_REST_GUI
             {
                 try
                 {
+                    stopwatch.Start();
                     response = await dmWeb.GroupInbox.GroupInbox("");
+                    stopwatch.Stop();
 
                     EndWaitCursor();
                 }
                 catch (Exception ex)
                 {
-                    groupBoxRichTextBox.Text = ex.Message;
+                    groupBoxRichTextBox.Text = string.Format("Get Group Inbox Time Elapsed: {0}\r\n\r\n", stopwatch.Elapsed);
+                    groupBoxRichTextBox.Text += ex.Message;
 
                     EndWaitCursor();
                     return;
                 }
             }
-
-            groupBoxRichTextBox.Text = "Group Inbox (Read): \r\n";
+            groupBoxRichTextBox.Text = string.Format("Get Group Inbox Time Elapsed: {0}\r\n\r\n", stopwatch.Elapsed);
+            groupBoxRichTextBox.Text += "Group Inbox (Read): \r\n";
             groupBoxRichTextBox.Text += string.Format("\tMoreMessagesAvailable: {0}\r\n", response.MoreMessagesAvailable);
             groupBoxRichTextBox.Text += string.Format("\tSummaries: \r\n");
 
@@ -1206,6 +1327,7 @@ namespace Direct_Messaging_REST_GUI
             int temp = 0;
 
             StartWaitCursor();
+            Stopwatch stopwatch = new Stopwatch();
 
             if (lastMessageIdReceivedTextBox.Text != "")
             {
@@ -1215,13 +1337,16 @@ namespace Direct_Messaging_REST_GUI
 
                     try
                     {
+                        stopwatch.Start();
                         response = await dmWeb.GroupInbox.GetGroupInboxUnread(mid.ToString());
+                        stopwatch.Stop();
 
                         EndWaitCursor();
                     }
                     catch (Exception ex)
                     {
-                        groupBoxRichTextBox.Text = ex.Message;
+                        groupBoxRichTextBox.Text = string.Format("Get Group Inbox Unread Time Elapsed: {0}\r\n\r\n", stopwatch.Elapsed);
+                        groupBoxRichTextBox.Text += ex.Message;
 
                         EndWaitCursor();
                         return;
@@ -1236,20 +1361,24 @@ namespace Direct_Messaging_REST_GUI
             {
                 try
                 {
+                    stopwatch.Start();
                     response = await dmWeb.GroupInbox.GetGroupInboxUnread("");
+                    stopwatch.Stop();
 
                     EndWaitCursor();
                 }
                 catch (Exception ex)
                 {
-                    groupBoxRichTextBox.Text = ex.Message;
+                    groupBoxRichTextBox.Text = string.Format("Get Group Inbox Unread Time Elapsed: {0}\r\n\r\n", stopwatch.Elapsed);
+                    groupBoxRichTextBox.Text += ex.Message;
 
                     EndWaitCursor();
                     return;
                 }
             }
 
-            groupBoxRichTextBox.Text = "Group Inbox (Unread): \r\n";
+            groupBoxRichTextBox.Text = string.Format("Get Group Inbox Unread Time Elapsed: {0}\r\n\r\n", stopwatch.Elapsed);
+            groupBoxRichTextBox.Text += "Group Inbox (Unread): \r\n";
             groupBoxRichTextBox.Text += string.Format("\tMoreMessagesAvailable: {0}\r\n", response.MoreMessagesAvailable);
             groupBoxRichTextBox.Text += string.Format("\tSummaries: \r\n");
 
