@@ -40,7 +40,6 @@
             this.oldpasswordTextBox = new System.Windows.Forms.TextBox();
             this.newpasswordTextBox = new System.Windows.Forms.TextBox();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.baseUrlTextBox = new System.Windows.Forms.TextBox();
             this.urlLabel = new System.Windows.Forms.Label();
             this.passwordVisibilityTextBox = new System.Windows.Forms.CheckBox();
             this.accountDetails = new System.Windows.Forms.Button();
@@ -131,6 +130,7 @@
             this.delegateAddressTextBox = new System.Windows.Forms.TextBox();
             this.showDelegatesButton = new System.Windows.Forms.Button();
             this.groupBoxRichTextBox = new System.Windows.Forms.RichTextBox();
+            this.urlComboBox = new System.Windows.Forms.ComboBox();
             this.readMessageSubmitButton.SuspendLayout();
             this.accountTab.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -266,7 +266,7 @@
             // 
             // panel1
             // 
-            this.panel1.Controls.Add(this.baseUrlTextBox);
+            this.panel1.Controls.Add(this.urlComboBox);
             this.panel1.Controls.Add(this.urlLabel);
             this.panel1.Controls.Add(this.passwordVisibilityTextBox);
             this.panel1.Controls.Add(this.accountDetails);
@@ -281,14 +281,6 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(509, 178);
             this.panel1.TabIndex = 1;
-            // 
-            // baseUrlTextBox
-            // 
-            this.baseUrlTextBox.Location = new System.Drawing.Point(91, 99);
-            this.baseUrlTextBox.Name = "baseUrlTextBox";
-            this.baseUrlTextBox.Size = new System.Drawing.Size(405, 26);
-            this.baseUrlTextBox.TabIndex = 4;
-            this.baseUrlTextBox.Text = "https://ssl.dmhisp.com/SecureMessagingAPI";
             // 
             // urlLabel
             // 
@@ -1153,6 +1145,20 @@
             this.groupBoxRichTextBox.TabIndex = 0;
             this.groupBoxRichTextBox.Text = "";
             // 
+            // urlComboBox
+            // 
+            this.urlComboBox.FormattingEnabled = true;
+            this.urlComboBox.Items.AddRange(new object[] {
+            "Direct Production",
+            "Direct Beta",
+            "Direct Sandbox",
+            "Direct Stage"});
+            this.urlComboBox.Location = new System.Drawing.Point(91, 99);
+            this.urlComboBox.Name = "urlComboBox";
+            this.urlComboBox.Size = new System.Drawing.Size(405, 28);
+            this.urlComboBox.TabIndex = 8;
+            this.urlComboBox.Text = "Direct Production";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1273,7 +1279,6 @@
         private System.Windows.Forms.CheckBox passwordVisibilityCheckBox2;
         private System.Windows.Forms.ListBox readMessageListBox;
         private System.Windows.Forms.Label urlLabel;
-        private System.Windows.Forms.TextBox baseUrlTextBox;
         private System.Windows.Forms.Button clearButton;
         private System.Windows.Forms.Panel panel10;
         private System.Windows.Forms.TabPage messageOperationsTab;
@@ -1311,6 +1316,7 @@
         private System.Windows.Forms.Button addDelegateButton;
         private System.Windows.Forms.Button getGroupInbox;
         private System.Windows.Forms.Button getGroupInboxUnread;
+        private System.Windows.Forms.ComboBox urlComboBox;
     }
 }
 

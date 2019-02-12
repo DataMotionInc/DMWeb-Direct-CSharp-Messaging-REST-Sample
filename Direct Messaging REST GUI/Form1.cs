@@ -70,14 +70,31 @@ namespace Direct_Messaging_REST_GUI
             user.UserIdOrEmail = usernameTextBox.Text;
             user.Password = passwordTextBox.Text;
 
-            string baseUrl = baseUrlTextBox.Text;
+            string baseUrl = urlComboBox.Text;
             if (baseUrl == "")
             {
                 dmWeb = new DMWeb();
             }
             else
             {
-                dmWeb = new DMWeb(baseUrl);
+                switch(baseUrl)
+                {
+                    case "Direct Production":
+                        dmWeb = new DMWeb("https://ssl.dmhisp.com/SecureMessagingAPI");
+                        break;
+                    case "Direct Beta":
+                        dmWeb = new DMWeb("https://directbeta.datamotion.com/SecureMessagingAPI");
+                        break;
+                    case "Direct Sandbox":
+                        dmWeb = new DMWeb("https://sandbox.dmhisp.com/SecureMessagingAPI");
+                        break;
+                    case "Direct Stage":
+                        dmWeb = new DMWeb("https://stage.dmhisp.com/SecureMessagingAPI");
+                        break;
+                    default:
+                        dmWeb = new DMWeb(baseUrl);
+                        break;
+                }
             }
 
             if (user.UserIdOrEmail != "" && user.Password != "")
