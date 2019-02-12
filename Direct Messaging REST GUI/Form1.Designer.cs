@@ -31,22 +31,26 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.readMessageSubmitButton = new System.Windows.Forms.TabControl();
             this.accountTab = new System.Windows.Forms.TabPage();
-            this.accountTextBox = new System.Windows.Forms.TextBox();
+            this.sessionKeyLabel = new System.Windows.Forms.Label();
+            this.sessionKeyTextBox = new System.Windows.Forms.TextBox();
+            this.logOnWithSessionKeyButton = new System.Windows.Forms.Button();
             this.passwordVisibilityCheckBox2 = new System.Windows.Forms.CheckBox();
+            this.urlComboBox = new System.Windows.Forms.ComboBox();
             this.passwordChangeButton = new System.Windows.Forms.Button();
+            this.accountTextBox = new System.Windows.Forms.TextBox();
             this.newPasswordLabel = new System.Windows.Forms.Label();
+            this.urlLabel = new System.Windows.Forms.Label();
             this.oldPasswordLabel = new System.Windows.Forms.Label();
             this.oldpasswordTextBox = new System.Windows.Forms.TextBox();
             this.newpasswordTextBox = new System.Windows.Forms.TextBox();
-            this.urlLabel = new System.Windows.Forms.Label();
             this.passwordVisibilityTextBox = new System.Windows.Forms.CheckBox();
             this.accountDetails = new System.Windows.Forms.Button();
             this.logoutButton = new System.Windows.Forms.Button();
+            this.usernameLabel = new System.Windows.Forms.Label();
             this.logOnButton = new System.Windows.Forms.Button();
+            this.passwordLabel = new System.Windows.Forms.Label();
             this.passwordTextBox = new System.Windows.Forms.TextBox();
             this.usernameTextBox = new System.Windows.Forms.TextBox();
-            this.passwordLabel = new System.Windows.Forms.Label();
-            this.usernameLabel = new System.Windows.Forms.Label();
             this.folderOperationsTab = new System.Windows.Forms.TabPage();
             this.listFoldersTextBox = new System.Windows.Forms.TextBox();
             this.listFolderButton = new System.Windows.Forms.Button();
@@ -128,10 +132,6 @@
             this.delegateAddressTextBox = new System.Windows.Forms.TextBox();
             this.showDelegatesButton = new System.Windows.Forms.Button();
             this.groupBoxRichTextBox = new System.Windows.Forms.RichTextBox();
-            this.urlComboBox = new System.Windows.Forms.ComboBox();
-            this.logOnWithSessionKeyButton = new System.Windows.Forms.Button();
-            this.sessionKeyLabel = new System.Windows.Forms.Label();
-            this.sessionKeyTextBox = new System.Windows.Forms.TextBox();
             this.readMessageSubmitButton.SuspendLayout();
             this.accountTab.SuspendLayout();
             this.folderOperationsTab.SuspendLayout();
@@ -199,6 +199,70 @@
             this.accountTab.Text = "Account";
             this.accountTab.UseVisualStyleBackColor = true;
             // 
+            // sessionKeyLabel
+            // 
+            this.sessionKeyLabel.AutoSize = true;
+            this.sessionKeyLabel.Location = new System.Drawing.Point(3, 136);
+            this.sessionKeyLabel.Name = "sessionKeyLabel";
+            this.sessionKeyLabel.Size = new System.Drawing.Size(96, 20);
+            this.sessionKeyLabel.TabIndex = 10;
+            this.sessionKeyLabel.Text = "SessionKey:";
+            // 
+            // sessionKeyTextBox
+            // 
+            this.sessionKeyTextBox.Location = new System.Drawing.Point(100, 136);
+            this.sessionKeyTextBox.Name = "sessionKeyTextBox";
+            this.sessionKeyTextBox.PasswordChar = '*';
+            this.sessionKeyTextBox.Size = new System.Drawing.Size(405, 26);
+            this.sessionKeyTextBox.TabIndex = 5;
+            // 
+            // logOnWithSessionKeyButton
+            // 
+            this.logOnWithSessionKeyButton.Enabled = false;
+            this.logOnWithSessionKeyButton.Location = new System.Drawing.Point(100, 178);
+            this.logOnWithSessionKeyButton.Name = "logOnWithSessionKeyButton";
+            this.logOnWithSessionKeyButton.Size = new System.Drawing.Size(324, 33);
+            this.logOnWithSessionKeyButton.TabIndex = 7;
+            this.logOnWithSessionKeyButton.Text = "Log On With Session Key";
+            this.logOnWithSessionKeyButton.UseVisualStyleBackColor = true;
+            this.logOnWithSessionKeyButton.Click += new System.EventHandler(this.logOnWithSessionKeyButton_Click);
+            // 
+            // passwordVisibilityCheckBox2
+            // 
+            this.passwordVisibilityCheckBox2.AutoSize = true;
+            this.passwordVisibilityCheckBox2.Location = new System.Drawing.Point(536, 77);
+            this.passwordVisibilityCheckBox2.Name = "passwordVisibilityCheckBox2";
+            this.passwordVisibilityCheckBox2.Size = new System.Drawing.Size(160, 24);
+            this.passwordVisibilityCheckBox2.TabIndex = 11;
+            this.passwordVisibilityCheckBox2.Text = "Display Passwords";
+            this.passwordVisibilityCheckBox2.UseVisualStyleBackColor = true;
+            this.passwordVisibilityCheckBox2.CheckedChanged += new System.EventHandler(this.passwordVisibilityCheckBox2_CheckedChanged);
+            // 
+            // urlComboBox
+            // 
+            this.urlComboBox.FormattingEnabled = true;
+            this.urlComboBox.Items.AddRange(new object[] {
+            "Direct Production",
+            "Direct Beta",
+            "Direct Sandbox",
+            "Direct Stage"});
+            this.urlComboBox.Location = new System.Drawing.Point(100, 102);
+            this.urlComboBox.Name = "urlComboBox";
+            this.urlComboBox.Size = new System.Drawing.Size(405, 28);
+            this.urlComboBox.TabIndex = 4;
+            this.urlComboBox.Text = "Direct Production";
+            // 
+            // passwordChangeButton
+            // 
+            this.passwordChangeButton.Enabled = false;
+            this.passwordChangeButton.Location = new System.Drawing.Point(714, 77);
+            this.passwordChangeButton.Name = "passwordChangeButton";
+            this.passwordChangeButton.Size = new System.Drawing.Size(172, 33);
+            this.passwordChangeButton.TabIndex = 12;
+            this.passwordChangeButton.Text = "Change Password";
+            this.passwordChangeButton.UseVisualStyleBackColor = true;
+            this.passwordChangeButton.Click += new System.EventHandler(this.passwordChangeButton_Click);
+            // 
             // accountTextBox
             // 
             this.accountTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -210,28 +274,6 @@
             this.accountTextBox.Size = new System.Drawing.Size(879, 353);
             this.accountTextBox.TabIndex = 0;
             // 
-            // passwordVisibilityCheckBox2
-            // 
-            this.passwordVisibilityCheckBox2.AutoSize = true;
-            this.passwordVisibilityCheckBox2.Location = new System.Drawing.Point(536, 77);
-            this.passwordVisibilityCheckBox2.Name = "passwordVisibilityCheckBox2";
-            this.passwordVisibilityCheckBox2.Size = new System.Drawing.Size(160, 24);
-            this.passwordVisibilityCheckBox2.TabIndex = 3;
-            this.passwordVisibilityCheckBox2.Text = "Display Passwords";
-            this.passwordVisibilityCheckBox2.UseVisualStyleBackColor = true;
-            this.passwordVisibilityCheckBox2.CheckedChanged += new System.EventHandler(this.passwordVisibilityCheckBox2_CheckedChanged);
-            // 
-            // passwordChangeButton
-            // 
-            this.passwordChangeButton.Enabled = false;
-            this.passwordChangeButton.Location = new System.Drawing.Point(714, 77);
-            this.passwordChangeButton.Name = "passwordChangeButton";
-            this.passwordChangeButton.Size = new System.Drawing.Size(172, 33);
-            this.passwordChangeButton.TabIndex = 4;
-            this.passwordChangeButton.Text = "Change Password";
-            this.passwordChangeButton.UseVisualStyleBackColor = true;
-            this.passwordChangeButton.Click += new System.EventHandler(this.passwordChangeButton_Click);
-            // 
             // newPasswordLabel
             // 
             this.newPasswordLabel.AutoSize = true;
@@ -240,6 +282,15 @@
             this.newPasswordLabel.Size = new System.Drawing.Size(121, 20);
             this.newPasswordLabel.TabIndex = 0;
             this.newPasswordLabel.Text = "New Password: ";
+            // 
+            // urlLabel
+            // 
+            this.urlLabel.AutoSize = true;
+            this.urlLabel.Location = new System.Drawing.Point(3, 102);
+            this.urlLabel.Name = "urlLabel";
+            this.urlLabel.Size = new System.Drawing.Size(46, 20);
+            this.urlLabel.TabIndex = 0;
+            this.urlLabel.Text = "URL:";
             // 
             // oldPasswordLabel
             // 
@@ -256,7 +307,7 @@
             this.oldpasswordTextBox.Name = "oldpasswordTextBox";
             this.oldpasswordTextBox.PasswordChar = '*';
             this.oldpasswordTextBox.Size = new System.Drawing.Size(228, 26);
-            this.oldpasswordTextBox.TabIndex = 1;
+            this.oldpasswordTextBox.TabIndex = 9;
             // 
             // newpasswordTextBox
             // 
@@ -264,16 +315,7 @@
             this.newpasswordTextBox.Name = "newpasswordTextBox";
             this.newpasswordTextBox.PasswordChar = '*';
             this.newpasswordTextBox.Size = new System.Drawing.Size(228, 26);
-            this.newpasswordTextBox.TabIndex = 2;
-            // 
-            // urlLabel
-            // 
-            this.urlLabel.AutoSize = true;
-            this.urlLabel.Location = new System.Drawing.Point(3, 102);
-            this.urlLabel.Name = "urlLabel";
-            this.urlLabel.Size = new System.Drawing.Size(46, 20);
-            this.urlLabel.TabIndex = 0;
-            this.urlLabel.Text = "URL:";
+            this.newpasswordTextBox.TabIndex = 10;
             // 
             // passwordVisibilityTextBox
             // 
@@ -292,7 +334,7 @@
             this.accountDetails.Location = new System.Drawing.Point(536, 178);
             this.accountDetails.Name = "accountDetails";
             this.accountDetails.Size = new System.Drawing.Size(350, 33);
-            this.accountDetails.TabIndex = 6;
+            this.accountDetails.TabIndex = 13;
             this.accountDetails.Text = "View Account Details";
             this.accountDetails.UseVisualStyleBackColor = true;
             this.accountDetails.Click += new System.EventHandler(this.accountDetails_Click);
@@ -303,20 +345,38 @@
             this.logoutButton.Location = new System.Drawing.Point(430, 178);
             this.logoutButton.Name = "logoutButton";
             this.logoutButton.Size = new System.Drawing.Size(75, 33);
-            this.logoutButton.TabIndex = 7;
+            this.logoutButton.TabIndex = 8;
             this.logoutButton.Text = "Log Out";
             this.logoutButton.UseVisualStyleBackColor = true;
             this.logoutButton.Click += new System.EventHandler(this.logoutButton_Click);
+            // 
+            // usernameLabel
+            // 
+            this.usernameLabel.AutoSize = true;
+            this.usernameLabel.Location = new System.Drawing.Point(3, 13);
+            this.usernameLabel.Name = "usernameLabel";
+            this.usernameLabel.Size = new System.Drawing.Size(91, 20);
+            this.usernameLabel.TabIndex = 0;
+            this.usernameLabel.Text = "Username: ";
             // 
             // logOnButton
             // 
             this.logOnButton.Location = new System.Drawing.Point(7, 178);
             this.logOnButton.Name = "logOnButton";
             this.logOnButton.Size = new System.Drawing.Size(75, 33);
-            this.logOnButton.TabIndex = 5;
+            this.logOnButton.TabIndex = 6;
             this.logOnButton.Text = "Log On";
             this.logOnButton.UseVisualStyleBackColor = true;
             this.logOnButton.Click += new System.EventHandler(this.logOnButton_Click);
+            // 
+            // passwordLabel
+            // 
+            this.passwordLabel.AutoSize = true;
+            this.passwordLabel.Location = new System.Drawing.Point(3, 45);
+            this.passwordLabel.Name = "passwordLabel";
+            this.passwordLabel.Size = new System.Drawing.Size(82, 20);
+            this.passwordLabel.TabIndex = 0;
+            this.passwordLabel.Text = "Password:";
             // 
             // passwordTextBox
             // 
@@ -332,24 +392,6 @@
             this.usernameTextBox.Name = "usernameTextBox";
             this.usernameTextBox.Size = new System.Drawing.Size(405, 26);
             this.usernameTextBox.TabIndex = 1;
-            // 
-            // passwordLabel
-            // 
-            this.passwordLabel.AutoSize = true;
-            this.passwordLabel.Location = new System.Drawing.Point(3, 45);
-            this.passwordLabel.Name = "passwordLabel";
-            this.passwordLabel.Size = new System.Drawing.Size(82, 20);
-            this.passwordLabel.TabIndex = 0;
-            this.passwordLabel.Text = "Password:";
-            // 
-            // usernameLabel
-            // 
-            this.usernameLabel.AutoSize = true;
-            this.usernameLabel.Location = new System.Drawing.Point(3, 13);
-            this.usernameLabel.Name = "usernameLabel";
-            this.usernameLabel.Size = new System.Drawing.Size(91, 20);
-            this.usernameLabel.TabIndex = 0;
-            this.usernameLabel.Text = "Username: ";
             // 
             // folderOperationsTab
             // 
@@ -1128,48 +1170,6 @@
             this.groupBoxRichTextBox.Size = new System.Drawing.Size(879, 396);
             this.groupBoxRichTextBox.TabIndex = 0;
             this.groupBoxRichTextBox.Text = "";
-            // 
-            // urlComboBox
-            // 
-            this.urlComboBox.FormattingEnabled = true;
-            this.urlComboBox.Items.AddRange(new object[] {
-            "Direct Production",
-            "Direct Beta",
-            "Direct Sandbox",
-            "Direct Stage"});
-            this.urlComboBox.Location = new System.Drawing.Point(100, 102);
-            this.urlComboBox.Name = "urlComboBox";
-            this.urlComboBox.Size = new System.Drawing.Size(405, 28);
-            this.urlComboBox.TabIndex = 8;
-            this.urlComboBox.Text = "Direct Production";
-            // 
-            // logOnWithSessionKeyButton
-            // 
-            this.logOnWithSessionKeyButton.Enabled = false;
-            this.logOnWithSessionKeyButton.Location = new System.Drawing.Point(100, 178);
-            this.logOnWithSessionKeyButton.Name = "logOnWithSessionKeyButton";
-            this.logOnWithSessionKeyButton.Size = new System.Drawing.Size(324, 33);
-            this.logOnWithSessionKeyButton.TabIndex = 9;
-            this.logOnWithSessionKeyButton.Text = "Log On With Session Key";
-            this.logOnWithSessionKeyButton.UseVisualStyleBackColor = true;
-            this.logOnWithSessionKeyButton.Click += new System.EventHandler(this.logOnWithSessionKeyButton_Click);
-            // 
-            // sessionKeyLabel
-            // 
-            this.sessionKeyLabel.AutoSize = true;
-            this.sessionKeyLabel.Location = new System.Drawing.Point(3, 136);
-            this.sessionKeyLabel.Name = "sessionKeyLabel";
-            this.sessionKeyLabel.Size = new System.Drawing.Size(96, 20);
-            this.sessionKeyLabel.TabIndex = 10;
-            this.sessionKeyLabel.Text = "SessionKey:";
-            // 
-            // sessionKeyTextBox
-            // 
-            this.sessionKeyTextBox.Location = new System.Drawing.Point(100, 136);
-            this.sessionKeyTextBox.Name = "sessionKeyTextBox";
-            this.sessionKeyTextBox.PasswordChar = '*';
-            this.sessionKeyTextBox.Size = new System.Drawing.Size(405, 26);
-            this.sessionKeyTextBox.TabIndex = 11;
             // 
             // Form1
             // 
