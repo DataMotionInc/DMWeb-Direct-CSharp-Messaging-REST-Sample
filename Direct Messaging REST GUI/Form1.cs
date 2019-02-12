@@ -11,7 +11,7 @@ namespace Direct_Messaging_REST_GUI
     public partial class Form1 : Form
     {
         DMWeb dmWeb = new DMWeb();
-
+        
         public Form1()
         {
             InitializeComponent();
@@ -1409,7 +1409,51 @@ namespace Direct_Messaging_REST_GUI
                 groupBoxRichTextBox.Text += string.Format("\t\tToAddress: {0} \r\n", response.Summaries[i].ToAddress);
                 groupBoxRichTextBox.Text += string.Format("\t\tSize: {0} \r\n", response.Summaries[i].Size);
                 groupBoxRichTextBox.Text += string.Format("\t\tMessageStatus: {0} \r\n\r\n", response.Summaries[i].MessageStatus);
+            }
+        }
 
+        private void logOnWithSessionKeyButton_Click(object sender, EventArgs e)
+        {
+            string baseUrl = urlComboBox.Text;
+            if (baseUrl == "")
+            {
+                accountTextBox.Text = "BaseURL cannot be empty.";
+            }
+            else
+            {
+                switch (baseUrl)
+                {
+                    case "Direct Production":
+                        dmWeb = new DMWeb("https://ssl.dmhisp.com/SecureMessagingAPI");
+                        break;
+                    case "Direct Beta":
+                        dmWeb = new DMWeb("https://directbeta.datamotion.com/SecureMessagingAPI");
+                        break;
+                    case "Direct Sandbox":
+                        dmWeb = new DMWeb("https://sandbox.dmhisp.com/SecureMessagingAPI");
+                        break;
+                    case "Direct Stage":
+                        dmWeb = new DMWeb("https://stage.dmhisp.com/SecureMessagingAPI");
+                        break;
+                    default:
+                        dmWeb = new DMWeb(baseUrl);
+                        break;
+                }
+
+                string sessionKey = sessionKeyTextBox.Text;
+                if (sessionKey.Length != 32)
+                {
+                    accountTextBox.Text = "Session Key is not a valid length";
+                }
+                else
+                {
+                    DMWeb._sessionKey = sessionKey;
+                    accountTextBox.Text = string.Format("Session Key has been set to: {0}", sessionKey);
+
+                    logOnButton.Enabled = false;
+                    logOnWithSessionKeyButton.Enabled = false;
+                    logoutButton.Enabled = true;
+                }
             }
         }
     }  
