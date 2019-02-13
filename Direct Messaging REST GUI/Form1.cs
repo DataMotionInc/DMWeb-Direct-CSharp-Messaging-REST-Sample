@@ -458,7 +458,9 @@ namespace Direct_Messaging_REST_GUI
 
                         try
                         {
+                            stopwatch.Start();
                             response = await dmWeb.Message.GetMessageSummaries(user);
+                            stopwatch.Stop();
                             folderIDTextBox2.Text = "";
                             lastMessageIdTextBox.Text = "";
 
