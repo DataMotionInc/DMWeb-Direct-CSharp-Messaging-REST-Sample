@@ -96,6 +96,8 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="DMLogo.ico" />
+    <None Include="Resources\dmbetadirect.png" />
+    <None Include="Resources\dm-logo.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

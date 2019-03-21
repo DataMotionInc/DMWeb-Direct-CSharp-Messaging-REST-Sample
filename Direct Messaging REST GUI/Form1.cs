@@ -108,12 +108,16 @@ namespace Direct_Messaging_REST_GUI
                     accountTextBox.Text = string.Format("Log On Time Elapsed: {0}\r\n\r\n", stopwatch.Elapsed);
                     accountTextBox.Text += string.Format("Session Key: {0}", response);
 
+                    logInLabel.Text = string.Format("Logged in on: {0}" + Environment.NewLine, DMWeb._baseUrl.ToLower().Replace("/securemessagingapi", ""));
+                    logInLabel.Text += string.Format("As: {0}" + Environment.NewLine, user.UserIdOrEmail);
+
                     usernameTextBox.Text = "";
                     passwordTextBox.Text = "";
                     logOnButton.Enabled = false;
                     accountDetails.Enabled = true;
                     logoutButton.Enabled = true;
                     passwordChangeButton.Enabled = true;
+                    logOnWithSessionKeyButton.Enabled = false;
 
                     EndWaitCursor();
                 }
@@ -167,6 +171,13 @@ namespace Direct_Messaging_REST_GUI
             accountDetails.Enabled = false;
             passwordChangeButton.Enabled = false;
             logoutButton.Enabled = false;
+            logOnWithSessionKeyButton.Enabled = true;
+            listFoldersTextBox.Clear();
+            messageSummariesTextBox.Clear();
+            readMessageTextBox.Clear();
+            readMessageListBox.Items.Clear();
+            sendMessageTextBox.Clear();
+            messageOperationsTextBox.Clear();
         }
 
         // This button receives a response of type AccountResponses which is displayed
@@ -529,6 +540,7 @@ namespace Direct_Messaging_REST_GUI
                     catch (Exception ex)
                     {
                         readMessageTextBox.Text = string.Format("Get Message returned MID {0} in Elapsed Time: {1}\r\n\r\n", messageId, stopwatch.Elapsed);
+                        readMessageTextBox2.Text = string.Format("Get Message returned MID {0} in Elapsed Time: {1}\r\n\r\n", messageId, stopwatch.Elapsed);
                         readMessageTextBox.Text += ex.Message;
 
                         EndWaitCursor();
@@ -536,30 +548,42 @@ namespace Direct_Messaging_REST_GUI
                     }
 
                     readMessageTextBox.Text = string.Format("Get Message returned MID {0} in Elapsed Time: {1}\r\n\r\n", messageId, stopwatch.Elapsed);
+                    readMessageTextBox2.Text = string.Format("Get Message returned MID {0} in Elapsed Time: {1}\r\n\r\n", messageId, stopwatch.Elapsed);
+
                     int toArrayLength = messageResponse.To.Count;
                     int ccArrayLength = messageResponse.Cc.Count;
                     int bccArrayLength = messageResponse.Bcc.Count;
 
                     readMessageTextBox.Text += "To: \r\n";
+                    readMessageTextBox2.Text += "To:\r\n";
                     for (int i = 0; i < toArrayLength; i++)
                     {
                         readMessageTextBox.Text += string.Format("\t{0} \r\n", Regex.Match(messageResponse.To[i], @"\<([^>]*)\>").Groups[1].Value);
+                        readMessageTextBox2.Text += string.Format("\t{0}\r\n", Regex.Match(messageResponse.To[i], @"\<([^>]*)\>").Groups[1].Value);
                     }
 
                     readMessageTextBox.Text += "Cc: \r\n";
                     for (int i = 0; i < ccArrayLength; i++)
                     {
                         readMessageTextBox.Text += string.Format("\t{0} \r\n", Regex.Match(messageResponse.Cc[i], @"\<([^>]*)\>").Groups[1].Value);
+                        readMessageTextBox2.Text += string.Format("\t{0} \r\n", Regex.Match(messageResponse.Cc[i], @"\<([^>]*)\>").Groups[1].Value);
                     }
 
                     readMessageTextBox.Text += "Bcc: \r\n";
                     for (int i = 0; i < bccArrayLength; i++)
                     {
                         readMessageTextBox.Text += string.Format("\t{0} \r\n", Regex.Match(messageResponse.Bcc[i], @"\<([^>]*)\>").Groups[1].Value);
+                        readMessageTextBox2.Text += string.Format("\t{0} \r\n", Regex.Match(messageResponse.Bcc[i], @"\<([^>]*)\>").Groups[1].Value);
                     }
+
+                    readMessageTextBox.Text += Environment.NewLine;
+                    readMessageTextBox2.Text += Environment.NewLine;
 
                     readMessageTextBox.Text += string.Format("Subject: {0}\r\n", messageResponse.Subject);
                     readMessageTextBox.Text += string.Format("Create Time: {0}\r\n", messageResponse.CreateTime);
+
+                    readMessageTextBox2.Text += string.Format("Subject: {0}\r\n", messageResponse.Subject);
+                    readMessageTextBox2.Text += string.Format("Create Time: {0}\r\n", messageResponse.CreateTime);
 
                     int attachmentArrayLength = messageResponse.Attachments.Count;
                     for (int i = 0; i < attachmentArrayLength; i++)
@@ -571,12 +595,13 @@ namespace Direct_Messaging_REST_GUI
                         dmWeb._base64.Add(messageResponse.Attachments[i].AttachmentBase64);
                     }
 
-                    //readMessageTextBox.Text += string.Format("\t{0}\r\n", messageResponse.HtmlBody);
-                    readMessageTextBox.Text += string.Format("Text Body: \r\n\t{0}", messageResponse.TextBody);
+                    readMessageTextBox.Text += string.Format("Text Body:\r\n\r\n{0}", messageResponse.TextBody);
+                    readMessageTextBox2.Text += string.Format("Html Body:\r\n\r\n {0}", messageResponse.HtmlBody);
                 }
                 else
                 {
                     readMessageTextBox.Text = "Invalid input (MID).";
+                    readMessageTextBox2.Text = "Invalid input (MID).";
 
                     EndWaitCursor();
                 }
@@ -584,6 +609,7 @@ namespace Direct_Messaging_REST_GUI
             else
             {
                 readMessageTextBox.Text = "Enter a MessageID";
+                readMessageTextBox2.Text = "Enter a MessageID";
 
                 EndWaitCursor();
             }
@@ -1178,7 +1204,7 @@ namespace Direct_Messaging_REST_GUI
             }
 
             groupBoxRichTextBox.Text = string.Format("Get Group Inbox MID Time Elapsed: {0}\r\n\r\n", stopwatch.Elapsed);
-            groupBoxRichTextBox.Text += "Group Inbox MessageIds \r\n";
+            groupBoxRichTextBox.Text += "Group Inbox MessageIds: \r\n";
             int midArrayLength = response.MessageIds.Length;
             for (int i = 0; i < midArrayLength; i++)
             {
@@ -1457,6 +1483,63 @@ namespace Direct_Messaging_REST_GUI
                     logoutButton.Enabled = true;
                 }
             }
+        }
+
+        private async void getUnreadMessagesButton_Click(object sender, EventArgs e)
+        {
+            StartWaitCursor();
+            Stopwatch stopwatch = new Stopwatch();
+
+            messageSummariesTextBox.Text = "";
+
+            DMWeb_REST.Models.Messaging.GetUnreadMessages response = new DMWeb_REST.Models.Messaging.GetUnreadMessages();
+
+            try
+            {
+                stopwatch.Start();
+                response = await dmWeb.Message.GetUnreadMessages(false, 0.ToString());
+                stopwatch.Stop();
+
+                EndWaitCursor();
+            }
+            catch (Exception ex)
+            {
+                messageSummariesTextBox.Text += string.Format("Get Unread Messages Time Elapsed: {0}\r\n\r\n", stopwatch.Elapsed);
+                messageSummariesTextBox.Text += ex.Message;
+
+                EndWaitCursor();
+                return;
+            }
+
+            int arrayLength = response.Summaries.Count;
+
+            //messageSummariesTextBox.Text += string.Format("More Messages Available: {0}\r\n", response.MoreMessagesAvailable);
+            messageSummariesTextBox.Text += string.Format("Get Unread Messages Time Elapsed: {0}\r\n\r\n", stopwatch.Elapsed);
+            for (int i = arrayLength - 1; i >= 0; i--)
+            {
+                messageSummariesTextBox.Text += string.Format("Subject: {0}\r\n", response.Summaries[i].Subject);
+                messageSummariesTextBox.Text += string.Format("\tSender Address: {0}\r\n", response.Summaries[i].SenderAddress);
+                messageSummariesTextBox.Text += string.Format("\tMessage Id: {0}\r\n", response.Summaries[i].MessageId);
+                messageSummariesTextBox.Text += string.Format("\tFolder Id: {0}\r\n", response.Summaries[i].FolderId);
+                messageSummariesTextBox.Text += string.Format("\tCreate Time String: {0}\r\n", response.Summaries[i].createTimeString);
+                messageSummariesTextBox.Text += string.Format("\tRead: {0}\r\n", response.Summaries[i].Read);
+                messageSummariesTextBox.Text += string.Format("\tAttachment Count: {0}\r\n", response.Summaries[i].AttachmentCount);
+                messageSummariesTextBox.Text += string.Format("\tMessage Size: {0}\r\n", response.Summaries[i].MessageSize);
+                messageSummariesTextBox.Text += string.Format("\tMessage Status: {0}\r\n", response.Summaries[i].MessageStatus);
+                messageSummariesTextBox.Text += "\r\n";
+            }
+
+            EndWaitCursor();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            toTextBox.Text = "";
+            ccTextBox.Text = "";
+            bccTextBox.Text = "";
+            subjectTextBox.Text = "";
+            messageRichTextBox.Text = "";
+            sendMessageTextBox.Text = "Text fields cleared.";
         }
     }  
 }
