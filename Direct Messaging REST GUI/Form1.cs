@@ -178,6 +178,7 @@ namespace Direct_Messaging_REST_GUI
             readMessageListBox.Items.Clear();
             sendMessageTextBox.Clear();
             messageOperationsTextBox.Clear();
+            logInLabel.Text = "";
         }
 
         // This button receives a response of type AccountResponses which is displayed

@@ -65,6 +65,7 @@
             this.folderNameLabel = new System.Windows.Forms.Label();
             this.createFolderButton = new System.Windows.Forms.Button();
             this.getMailBoxTab = new System.Windows.Forms.TabPage();
+            this.getUnreadMessagesButton = new System.Windows.Forms.Button();
             this.messageSummariesTextBox = new System.Windows.Forms.TextBox();
             this.panel6 = new System.Windows.Forms.Panel();
             this.lastMessageIdTextBox = new System.Windows.Forms.TextBox();
@@ -73,12 +74,18 @@
             this.folderIDLabel2 = new System.Windows.Forms.Label();
             this.getMessageSummariesButton = new System.Windows.Forms.Button();
             this.readMessageTab = new System.Windows.Forms.TabPage();
+            this.messageTabControl = new System.Windows.Forms.TabControl();
+            this.textTab = new System.Windows.Forms.TabPage();
+            this.readMessageTextBox = new System.Windows.Forms.TextBox();
+            this.rawHTMLTab = new System.Windows.Forms.TabPage();
+            this.readMessageTextBox2 = new System.Windows.Forms.TextBox();
             this.panel10 = new System.Windows.Forms.Panel();
             this.messageIDLabel = new System.Windows.Forms.Label();
             this.messageIDTextBox = new System.Windows.Forms.TextBox();
             this.newReadMessageSubmitButton = new System.Windows.Forms.Button();
             this.readMessageListBox = new System.Windows.Forms.ListBox();
             this.sendMessageTab = new System.Windows.Forms.TabPage();
+            this.button1 = new System.Windows.Forms.Button();
             this.clearButton = new System.Windows.Forms.Button();
             this.sendMessageTextBox = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
@@ -131,15 +138,8 @@
             this.delegateAddressTextBox = new System.Windows.Forms.TextBox();
             this.showDelegatesButton = new System.Windows.Forms.Button();
             this.groupBoxRichTextBox = new System.Windows.Forms.RichTextBox();
-            this.getUnreadMessagesButton = new System.Windows.Forms.Button();
-            this.messageTabControl = new System.Windows.Forms.TabControl();
-            this.textTab = new System.Windows.Forms.TabPage();
-            this.readMessageTextBox = new System.Windows.Forms.TextBox();
-            this.rawHTMLTab = new System.Windows.Forms.TabPage();
-            this.readMessageTextBox2 = new System.Windows.Forms.TextBox();
             this.logInLabel = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.button1 = new System.Windows.Forms.Button();
             this.readMessageSubmitButton.SuspendLayout();
             this.accountTab.SuspendLayout();
             this.folderOperationsTab.SuspendLayout();
@@ -148,6 +148,9 @@
             this.getMailBoxTab.SuspendLayout();
             this.panel6.SuspendLayout();
             this.readMessageTab.SuspendLayout();
+            this.messageTabControl.SuspendLayout();
+            this.textTab.SuspendLayout();
+            this.rawHTMLTab.SuspendLayout();
             this.panel10.SuspendLayout();
             this.sendMessageTab.SuspendLayout();
             this.messageOperationsTab.SuspendLayout();
@@ -158,9 +161,6 @@
             this.panel12.SuspendLayout();
             this.panel11.SuspendLayout();
             this.panel3.SuspendLayout();
-            this.messageTabControl.SuspendLayout();
-            this.textTab.SuspendLayout();
-            this.rawHTMLTab.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -539,6 +539,16 @@
             this.getMailBoxTab.Text = "Get Mailbox";
             this.getMailBoxTab.UseVisualStyleBackColor = true;
             // 
+            // getUnreadMessagesButton
+            // 
+            this.getUnreadMessagesButton.Location = new System.Drawing.Point(6, 3);
+            this.getUnreadMessagesButton.Name = "getUnreadMessagesButton";
+            this.getUnreadMessagesButton.Size = new System.Drawing.Size(100, 105);
+            this.getUnreadMessagesButton.TabIndex = 0;
+            this.getUnreadMessagesButton.Text = "Get Unread Messages";
+            this.getUnreadMessagesButton.UseVisualStyleBackColor = true;
+            this.getUnreadMessagesButton.Click += new System.EventHandler(this.getUnreadMessagesButton_Click);
+            // 
             // messageSummariesTextBox
             // 
             this.messageSummariesTextBox.Location = new System.Drawing.Point(6, 117);
@@ -616,6 +626,60 @@
             this.readMessageTab.Text = "Read Message";
             this.readMessageTab.UseVisualStyleBackColor = true;
             // 
+            // messageTabControl
+            // 
+            this.messageTabControl.Controls.Add(this.textTab);
+            this.messageTabControl.Controls.Add(this.rawHTMLTab);
+            this.messageTabControl.Location = new System.Drawing.Point(3, 104);
+            this.messageTabControl.Name = "messageTabControl";
+            this.messageTabControl.SelectedIndex = 0;
+            this.messageTabControl.Size = new System.Drawing.Size(884, 328);
+            this.messageTabControl.TabIndex = 1;
+            // 
+            // textTab
+            // 
+            this.textTab.Controls.Add(this.readMessageTextBox);
+            this.textTab.Location = new System.Drawing.Point(4, 29);
+            this.textTab.Name = "textTab";
+            this.textTab.Padding = new System.Windows.Forms.Padding(3);
+            this.textTab.Size = new System.Drawing.Size(876, 295);
+            this.textTab.TabIndex = 0;
+            this.textTab.Text = "Text";
+            this.textTab.UseVisualStyleBackColor = true;
+            // 
+            // readMessageTextBox
+            // 
+            this.readMessageTextBox.Location = new System.Drawing.Point(0, 0);
+            this.readMessageTextBox.Multiline = true;
+            this.readMessageTextBox.Name = "readMessageTextBox";
+            this.readMessageTextBox.ReadOnly = true;
+            this.readMessageTextBox.ScrollBars = System.Windows.Forms.ScrollBars.Both;
+            this.readMessageTextBox.Size = new System.Drawing.Size(884, 299);
+            this.readMessageTextBox.TabIndex = 0;
+            this.readMessageTextBox.WordWrap = false;
+            // 
+            // rawHTMLTab
+            // 
+            this.rawHTMLTab.Controls.Add(this.readMessageTextBox2);
+            this.rawHTMLTab.Location = new System.Drawing.Point(4, 29);
+            this.rawHTMLTab.Name = "rawHTMLTab";
+            this.rawHTMLTab.Padding = new System.Windows.Forms.Padding(3);
+            this.rawHTMLTab.Size = new System.Drawing.Size(876, 295);
+            this.rawHTMLTab.TabIndex = 1;
+            this.rawHTMLTab.Text = "Raw HTML";
+            this.rawHTMLTab.UseVisualStyleBackColor = true;
+            // 
+            // readMessageTextBox2
+            // 
+            this.readMessageTextBox2.Location = new System.Drawing.Point(0, 0);
+            this.readMessageTextBox2.Multiline = true;
+            this.readMessageTextBox2.Name = "readMessageTextBox2";
+            this.readMessageTextBox2.ReadOnly = true;
+            this.readMessageTextBox2.ScrollBars = System.Windows.Forms.ScrollBars.Both;
+            this.readMessageTextBox2.Size = new System.Drawing.Size(884, 353);
+            this.readMessageTextBox2.TabIndex = 1;
+            this.readMessageTextBox2.WordWrap = false;
+            // 
             // panel10
             // 
             this.panel10.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
@@ -689,6 +753,16 @@
             this.sendMessageTab.TabIndex = 3;
             this.sendMessageTab.Text = "Send Message";
             this.sendMessageTab.UseVisualStyleBackColor = true;
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(7, 473);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(102, 29);
+            this.button1.TabIndex = 8;
+            this.button1.Text = "Clear Text Fields";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // clearButton
             // 
@@ -1179,70 +1253,6 @@
             this.groupBoxRichTextBox.TabIndex = 5;
             this.groupBoxRichTextBox.Text = "";
             // 
-            // getUnreadMessagesButton
-            // 
-            this.getUnreadMessagesButton.Location = new System.Drawing.Point(6, 3);
-            this.getUnreadMessagesButton.Name = "getUnreadMessagesButton";
-            this.getUnreadMessagesButton.Size = new System.Drawing.Size(100, 105);
-            this.getUnreadMessagesButton.TabIndex = 0;
-            this.getUnreadMessagesButton.Text = "Get Unread Messages";
-            this.getUnreadMessagesButton.UseVisualStyleBackColor = true;
-            this.getUnreadMessagesButton.Click += new System.EventHandler(this.getUnreadMessagesButton_Click);
-            // 
-            // messageTabControl
-            // 
-            this.messageTabControl.Controls.Add(this.textTab);
-            this.messageTabControl.Controls.Add(this.rawHTMLTab);
-            this.messageTabControl.Location = new System.Drawing.Point(3, 104);
-            this.messageTabControl.Name = "messageTabControl";
-            this.messageTabControl.SelectedIndex = 0;
-            this.messageTabControl.Size = new System.Drawing.Size(884, 328);
-            this.messageTabControl.TabIndex = 1;
-            // 
-            // textTab
-            // 
-            this.textTab.Controls.Add(this.readMessageTextBox);
-            this.textTab.Location = new System.Drawing.Point(4, 29);
-            this.textTab.Name = "textTab";
-            this.textTab.Padding = new System.Windows.Forms.Padding(3);
-            this.textTab.Size = new System.Drawing.Size(876, 295);
-            this.textTab.TabIndex = 0;
-            this.textTab.Text = "Text";
-            this.textTab.UseVisualStyleBackColor = true;
-            // 
-            // readMessageTextBox
-            // 
-            this.readMessageTextBox.Location = new System.Drawing.Point(0, 0);
-            this.readMessageTextBox.Multiline = true;
-            this.readMessageTextBox.Name = "readMessageTextBox";
-            this.readMessageTextBox.ReadOnly = true;
-            this.readMessageTextBox.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.readMessageTextBox.Size = new System.Drawing.Size(884, 299);
-            this.readMessageTextBox.TabIndex = 0;
-            this.readMessageTextBox.WordWrap = false;
-            // 
-            // rawHTMLTab
-            // 
-            this.rawHTMLTab.Controls.Add(this.readMessageTextBox2);
-            this.rawHTMLTab.Location = new System.Drawing.Point(4, 29);
-            this.rawHTMLTab.Name = "rawHTMLTab";
-            this.rawHTMLTab.Padding = new System.Windows.Forms.Padding(3);
-            this.rawHTMLTab.Size = new System.Drawing.Size(876, 295);
-            this.rawHTMLTab.TabIndex = 1;
-            this.rawHTMLTab.Text = "Raw HTML";
-            this.rawHTMLTab.UseVisualStyleBackColor = true;
-            // 
-            // readMessageTextBox2
-            // 
-            this.readMessageTextBox2.Location = new System.Drawing.Point(0, 0);
-            this.readMessageTextBox2.Multiline = true;
-            this.readMessageTextBox2.Name = "readMessageTextBox2";
-            this.readMessageTextBox2.ReadOnly = true;
-            this.readMessageTextBox2.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.readMessageTextBox2.Size = new System.Drawing.Size(884, 353);
-            this.readMessageTextBox2.TabIndex = 1;
-            this.readMessageTextBox2.WordWrap = false;
-            // 
             // logInLabel
             // 
             this.logInLabel.AutoSize = true;
@@ -1254,22 +1264,12 @@
             // 
             // pictureBox1
             // 
-            this.pictureBox1.Image = global::Direct_Messaging_REST_GUI.Properties.Resources.dm_logo;
-            this.pictureBox1.Location = new System.Drawing.Point(4, 3);
+            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
+            this.pictureBox1.Location = new System.Drawing.Point(4, -1);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(286, 62);
-            this.pictureBox1.TabIndex = 6;
+            this.pictureBox1.Size = new System.Drawing.Size(287, 66);
+            this.pictureBox1.TabIndex = 1;
             this.pictureBox1.TabStop = false;
-            // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(7, 473);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(102, 29);
-            this.button1.TabIndex = 8;
-            this.button1.Text = "Clear Text Fields";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // Form1
             // 
@@ -1277,8 +1277,8 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
             this.ClientSize = new System.Drawing.Size(903, 609);
-            this.Controls.Add(this.logInLabel);
             this.Controls.Add(this.pictureBox1);
+            this.Controls.Add(this.logInLabel);
             this.Controls.Add(this.readMessageSubmitButton);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximumSize = new System.Drawing.Size(919, 648);
@@ -1299,6 +1299,11 @@
             this.panel6.ResumeLayout(false);
             this.panel6.PerformLayout();
             this.readMessageTab.ResumeLayout(false);
+            this.messageTabControl.ResumeLayout(false);
+            this.textTab.ResumeLayout(false);
+            this.textTab.PerformLayout();
+            this.rawHTMLTab.ResumeLayout(false);
+            this.rawHTMLTab.PerformLayout();
             this.panel10.ResumeLayout(false);
             this.panel10.PerformLayout();
             this.sendMessageTab.ResumeLayout(false);
@@ -1318,11 +1323,6 @@
             this.panel11.PerformLayout();
             this.panel3.ResumeLayout(false);
             this.panel3.PerformLayout();
-            this.messageTabControl.ResumeLayout(false);
-            this.textTab.ResumeLayout(false);
-            this.textTab.PerformLayout();
-            this.rawHTMLTab.ResumeLayout(false);
-            this.rawHTMLTab.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -1433,7 +1433,6 @@
         private System.Windows.Forms.Button logOnWithSessionKeyButton;
         private System.Windows.Forms.Label sessionKeyLabel;
         private System.Windows.Forms.TextBox sessionKeyTextBox;
-        private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Button getUnreadMessagesButton;
         private System.Windows.Forms.TabControl messageTabControl;
         private System.Windows.Forms.TabPage textTab;
@@ -1442,6 +1441,7 @@
         private System.Windows.Forms.TextBox readMessageTextBox2;
         private System.Windows.Forms.Label logInLabel;
         private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.PictureBox pictureBox1;
     }
 }
 
