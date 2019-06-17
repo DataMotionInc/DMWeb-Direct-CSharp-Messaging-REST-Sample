@@ -65,6 +65,7 @@
             this.folderNameLabel = new System.Windows.Forms.Label();
             this.createFolderButton = new System.Windows.Forms.Button();
             this.getMailBoxTab = new System.Windows.Forms.TabPage();
+            this.getUnreadMessagesButton = new System.Windows.Forms.Button();
             this.messageSummariesTextBox = new System.Windows.Forms.TextBox();
             this.panel6 = new System.Windows.Forms.Panel();
             this.lastMessageIdTextBox = new System.Windows.Forms.TextBox();
@@ -73,13 +74,18 @@
             this.folderIDLabel2 = new System.Windows.Forms.Label();
             this.getMessageSummariesButton = new System.Windows.Forms.Button();
             this.readMessageTab = new System.Windows.Forms.TabPage();
+            this.messageTabControl = new System.Windows.Forms.TabControl();
+            this.textTab = new System.Windows.Forms.TabPage();
+            this.readMessageTextBox = new System.Windows.Forms.TextBox();
+            this.rawHTMLTab = new System.Windows.Forms.TabPage();
+            this.readMessageTextBox2 = new System.Windows.Forms.TextBox();
             this.panel10 = new System.Windows.Forms.Panel();
             this.messageIDLabel = new System.Windows.Forms.Label();
             this.messageIDTextBox = new System.Windows.Forms.TextBox();
             this.newReadMessageSubmitButton = new System.Windows.Forms.Button();
             this.readMessageListBox = new System.Windows.Forms.ListBox();
-            this.readMessageTextBox = new System.Windows.Forms.TextBox();
             this.sendMessageTab = new System.Windows.Forms.TabPage();
+            this.button1 = new System.Windows.Forms.Button();
             this.clearButton = new System.Windows.Forms.Button();
             this.sendMessageTextBox = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
@@ -132,6 +138,8 @@
             this.delegateAddressTextBox = new System.Windows.Forms.TextBox();
             this.showDelegatesButton = new System.Windows.Forms.Button();
             this.groupBoxRichTextBox = new System.Windows.Forms.RichTextBox();
+            this.logInLabel = new System.Windows.Forms.Label();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.readMessageSubmitButton.SuspendLayout();
             this.accountTab.SuspendLayout();
             this.folderOperationsTab.SuspendLayout();
@@ -140,6 +148,9 @@
             this.getMailBoxTab.SuspendLayout();
             this.panel6.SuspendLayout();
             this.readMessageTab.SuspendLayout();
+            this.messageTabControl.SuspendLayout();
+            this.textTab.SuspendLayout();
+            this.rawHTMLTab.SuspendLayout();
             this.panel10.SuspendLayout();
             this.sendMessageTab.SuspendLayout();
             this.messageOperationsTab.SuspendLayout();
@@ -150,6 +161,7 @@
             this.panel12.SuspendLayout();
             this.panel11.SuspendLayout();
             this.panel3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // readMessageSubmitButton
@@ -161,12 +173,11 @@
             this.readMessageSubmitButton.Controls.Add(this.sendMessageTab);
             this.readMessageSubmitButton.Controls.Add(this.messageOperationsTab);
             this.readMessageSubmitButton.Controls.Add(this.delegateOperationsTab);
-            this.readMessageSubmitButton.Dock = System.Windows.Forms.DockStyle.Fill;
             this.readMessageSubmitButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.readMessageSubmitButton.Location = new System.Drawing.Point(0, 0);
+            this.readMessageSubmitButton.Location = new System.Drawing.Point(0, 71);
             this.readMessageSubmitButton.Name = "readMessageSubmitButton";
             this.readMessageSubmitButton.SelectedIndex = 0;
-            this.readMessageSubmitButton.Size = new System.Drawing.Size(903, 609);
+            this.readMessageSubmitButton.Size = new System.Drawing.Size(903, 538);
             this.readMessageSubmitButton.TabIndex = 0;
             // 
             // accountTab
@@ -194,7 +205,7 @@
             this.accountTab.Location = new System.Drawing.Point(4, 29);
             this.accountTab.Name = "accountTab";
             this.accountTab.Padding = new System.Windows.Forms.Padding(3);
-            this.accountTab.Size = new System.Drawing.Size(895, 576);
+            this.accountTab.Size = new System.Drawing.Size(895, 505);
             this.accountTab.TabIndex = 0;
             this.accountTab.Text = "Account";
             this.accountTab.UseVisualStyleBackColor = true;
@@ -212,13 +223,11 @@
             // 
             this.sessionKeyTextBox.Location = new System.Drawing.Point(100, 136);
             this.sessionKeyTextBox.Name = "sessionKeyTextBox";
-            this.sessionKeyTextBox.PasswordChar = '*';
             this.sessionKeyTextBox.Size = new System.Drawing.Size(405, 26);
             this.sessionKeyTextBox.TabIndex = 5;
             // 
             // logOnWithSessionKeyButton
             // 
-            this.logOnWithSessionKeyButton.Enabled = false;
             this.logOnWithSessionKeyButton.Location = new System.Drawing.Point(100, 178);
             this.logOnWithSessionKeyButton.Name = "logOnWithSessionKeyButton";
             this.logOnWithSessionKeyButton.Size = new System.Drawing.Size(324, 33);
@@ -250,7 +259,6 @@
             this.urlComboBox.Name = "urlComboBox";
             this.urlComboBox.Size = new System.Drawing.Size(405, 28);
             this.urlComboBox.TabIndex = 4;
-            this.urlComboBox.Text = "Direct Production";
             // 
             // passwordChangeButton
             // 
@@ -270,9 +278,9 @@
             this.accountTextBox.Multiline = true;
             this.accountTextBox.Name = "accountTextBox";
             this.accountTextBox.ReadOnly = true;
-            this.accountTextBox.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.accountTextBox.Size = new System.Drawing.Size(879, 353);
-            this.accountTextBox.TabIndex = 0;
+            this.accountTextBox.ScrollBars = System.Windows.Forms.ScrollBars.Both;
+            this.accountTextBox.Size = new System.Drawing.Size(879, 285);
+            this.accountTextBox.TabIndex = 14;
             // 
             // newPasswordLabel
             // 
@@ -401,7 +409,7 @@
             this.folderOperationsTab.Controls.Add(this.panel4);
             this.folderOperationsTab.Location = new System.Drawing.Point(4, 29);
             this.folderOperationsTab.Name = "folderOperationsTab";
-            this.folderOperationsTab.Size = new System.Drawing.Size(895, 576);
+            this.folderOperationsTab.Size = new System.Drawing.Size(895, 505);
             this.folderOperationsTab.TabIndex = 4;
             this.folderOperationsTab.Text = "Folder Operations";
             this.folderOperationsTab.UseVisualStyleBackColor = true;
@@ -412,22 +420,23 @@
             this.listFoldersTextBox.Multiline = true;
             this.listFoldersTextBox.Name = "listFoldersTextBox";
             this.listFoldersTextBox.ReadOnly = true;
-            this.listFoldersTextBox.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.listFoldersTextBox.Size = new System.Drawing.Size(884, 421);
-            this.listFoldersTextBox.TabIndex = 0;
+            this.listFoldersTextBox.ScrollBars = System.Windows.Forms.ScrollBars.Both;
+            this.listFoldersTextBox.Size = new System.Drawing.Size(884, 360);
+            this.listFoldersTextBox.TabIndex = 3;
             // 
             // listFolderButton
             // 
             this.listFolderButton.Location = new System.Drawing.Point(597, 5);
             this.listFolderButton.Name = "listFolderButton";
             this.listFolderButton.Size = new System.Drawing.Size(163, 38);
-            this.listFolderButton.TabIndex = 1;
+            this.listFolderButton.TabIndex = 2;
             this.listFolderButton.Text = "List Folders";
             this.listFolderButton.UseVisualStyleBackColor = true;
             this.listFolderButton.Click += new System.EventHandler(this.listFolderButton_Click);
             // 
             // panel5
             // 
+            this.panel5.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panel5.Controls.Add(this.folderIDTextBox);
             this.panel5.Controls.Add(this.folderIDLabel);
             this.panel5.Controls.Add(this.deleteFolder);
@@ -464,6 +473,7 @@
             // 
             // panel4
             // 
+            this.panel4.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panel4.Controls.Add(this.folderTypeTextBox);
             this.panel4.Controls.Add(this.folderTypeLabel);
             this.panel4.Controls.Add(this.folderNameTextBox);
@@ -487,7 +497,7 @@
             this.folderTypeLabel.Name = "folderTypeLabel";
             this.folderTypeLabel.Size = new System.Drawing.Size(108, 64);
             this.folderTypeLabel.TabIndex = 0;
-            this.folderTypeLabel.Text = "Folder Type: 0 (Inbox) 1(Outbox)";
+            this.folderTypeLabel.Text = "Folder Type: 0(Inbox) 1(Outbox)";
             this.folderTypeLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // folderNameTextBox
@@ -518,15 +528,26 @@
             // 
             // getMailBoxTab
             // 
+            this.getMailBoxTab.Controls.Add(this.getUnreadMessagesButton);
             this.getMailBoxTab.Controls.Add(this.messageSummariesTextBox);
             this.getMailBoxTab.Controls.Add(this.panel6);
             this.getMailBoxTab.Location = new System.Drawing.Point(4, 29);
             this.getMailBoxTab.Name = "getMailBoxTab";
             this.getMailBoxTab.Padding = new System.Windows.Forms.Padding(3);
-            this.getMailBoxTab.Size = new System.Drawing.Size(895, 576);
+            this.getMailBoxTab.Size = new System.Drawing.Size(895, 505);
             this.getMailBoxTab.TabIndex = 1;
             this.getMailBoxTab.Text = "Get Mailbox";
             this.getMailBoxTab.UseVisualStyleBackColor = true;
+            // 
+            // getUnreadMessagesButton
+            // 
+            this.getUnreadMessagesButton.Location = new System.Drawing.Point(6, 3);
+            this.getUnreadMessagesButton.Name = "getUnreadMessagesButton";
+            this.getUnreadMessagesButton.Size = new System.Drawing.Size(100, 105);
+            this.getUnreadMessagesButton.TabIndex = 0;
+            this.getUnreadMessagesButton.Text = "Get Unread Messages";
+            this.getUnreadMessagesButton.UseVisualStyleBackColor = true;
+            this.getUnreadMessagesButton.Click += new System.EventHandler(this.getUnreadMessagesButton_Click);
             // 
             // messageSummariesTextBox
             // 
@@ -534,20 +555,21 @@
             this.messageSummariesTextBox.Multiline = true;
             this.messageSummariesTextBox.Name = "messageSummariesTextBox";
             this.messageSummariesTextBox.ReadOnly = true;
-            this.messageSummariesTextBox.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.messageSummariesTextBox.Size = new System.Drawing.Size(881, 453);
-            this.messageSummariesTextBox.TabIndex = 0;
+            this.messageSummariesTextBox.ScrollBars = System.Windows.Forms.ScrollBars.Both;
+            this.messageSummariesTextBox.Size = new System.Drawing.Size(881, 388);
+            this.messageSummariesTextBox.TabIndex = 2;
             // 
             // panel6
             // 
+            this.panel6.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panel6.Controls.Add(this.lastMessageIdTextBox);
             this.panel6.Controls.Add(this.lastMessageIDLabel);
             this.panel6.Controls.Add(this.folderIDTextBox2);
             this.panel6.Controls.Add(this.folderIDLabel2);
             this.panel6.Controls.Add(this.getMessageSummariesButton);
-            this.panel6.Location = new System.Drawing.Point(8, 6);
+            this.panel6.Location = new System.Drawing.Point(112, 3);
             this.panel6.Name = "panel6";
-            this.panel6.Size = new System.Drawing.Size(438, 92);
+            this.panel6.Size = new System.Drawing.Size(384, 105);
             this.panel6.TabIndex = 1;
             // 
             // lastMessageIdTextBox
@@ -584,9 +606,9 @@
             // 
             // getMessageSummariesButton
             // 
-            this.getMessageSummariesButton.Location = new System.Drawing.Point(268, 0);
+            this.getMessageSummariesButton.Location = new System.Drawing.Point(265, 2);
             this.getMessageSummariesButton.Name = "getMessageSummariesButton";
-            this.getMessageSummariesButton.Size = new System.Drawing.Size(163, 88);
+            this.getMessageSummariesButton.Size = new System.Drawing.Size(114, 98);
             this.getMessageSummariesButton.TabIndex = 3;
             this.getMessageSummariesButton.Text = "Get Message Summaries";
             this.getMessageSummariesButton.UseVisualStyleBackColor = true;
@@ -594,25 +616,80 @@
             // 
             // readMessageTab
             // 
+            this.readMessageTab.Controls.Add(this.messageTabControl);
             this.readMessageTab.Controls.Add(this.panel10);
             this.readMessageTab.Controls.Add(this.readMessageListBox);
-            this.readMessageTab.Controls.Add(this.readMessageTextBox);
             this.readMessageTab.Location = new System.Drawing.Point(4, 29);
             this.readMessageTab.Name = "readMessageTab";
-            this.readMessageTab.Size = new System.Drawing.Size(895, 576);
+            this.readMessageTab.Size = new System.Drawing.Size(895, 505);
             this.readMessageTab.TabIndex = 2;
             this.readMessageTab.Text = "Read Message";
             this.readMessageTab.UseVisualStyleBackColor = true;
             // 
+            // messageTabControl
+            // 
+            this.messageTabControl.Controls.Add(this.textTab);
+            this.messageTabControl.Controls.Add(this.rawHTMLTab);
+            this.messageTabControl.Location = new System.Drawing.Point(3, 104);
+            this.messageTabControl.Name = "messageTabControl";
+            this.messageTabControl.SelectedIndex = 0;
+            this.messageTabControl.Size = new System.Drawing.Size(884, 328);
+            this.messageTabControl.TabIndex = 1;
+            // 
+            // textTab
+            // 
+            this.textTab.Controls.Add(this.readMessageTextBox);
+            this.textTab.Location = new System.Drawing.Point(4, 29);
+            this.textTab.Name = "textTab";
+            this.textTab.Padding = new System.Windows.Forms.Padding(3);
+            this.textTab.Size = new System.Drawing.Size(876, 295);
+            this.textTab.TabIndex = 0;
+            this.textTab.Text = "Text";
+            this.textTab.UseVisualStyleBackColor = true;
+            // 
+            // readMessageTextBox
+            // 
+            this.readMessageTextBox.Location = new System.Drawing.Point(0, 0);
+            this.readMessageTextBox.Multiline = true;
+            this.readMessageTextBox.Name = "readMessageTextBox";
+            this.readMessageTextBox.ReadOnly = true;
+            this.readMessageTextBox.ScrollBars = System.Windows.Forms.ScrollBars.Both;
+            this.readMessageTextBox.Size = new System.Drawing.Size(884, 299);
+            this.readMessageTextBox.TabIndex = 0;
+            this.readMessageTextBox.WordWrap = false;
+            // 
+            // rawHTMLTab
+            // 
+            this.rawHTMLTab.Controls.Add(this.readMessageTextBox2);
+            this.rawHTMLTab.Location = new System.Drawing.Point(4, 29);
+            this.rawHTMLTab.Name = "rawHTMLTab";
+            this.rawHTMLTab.Padding = new System.Windows.Forms.Padding(3);
+            this.rawHTMLTab.Size = new System.Drawing.Size(876, 295);
+            this.rawHTMLTab.TabIndex = 1;
+            this.rawHTMLTab.Text = "Raw HTML";
+            this.rawHTMLTab.UseVisualStyleBackColor = true;
+            // 
+            // readMessageTextBox2
+            // 
+            this.readMessageTextBox2.Location = new System.Drawing.Point(0, 0);
+            this.readMessageTextBox2.Multiline = true;
+            this.readMessageTextBox2.Name = "readMessageTextBox2";
+            this.readMessageTextBox2.ReadOnly = true;
+            this.readMessageTextBox2.ScrollBars = System.Windows.Forms.ScrollBars.Both;
+            this.readMessageTextBox2.Size = new System.Drawing.Size(884, 353);
+            this.readMessageTextBox2.TabIndex = 1;
+            this.readMessageTextBox2.WordWrap = false;
+            // 
             // panel10
             // 
+            this.panel10.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panel10.Controls.Add(this.messageIDLabel);
             this.panel10.Controls.Add(this.messageIDTextBox);
             this.panel10.Controls.Add(this.newReadMessageSubmitButton);
             this.panel10.Location = new System.Drawing.Point(3, 3);
             this.panel10.Name = "panel10";
-            this.panel10.Size = new System.Drawing.Size(253, 87);
-            this.panel10.TabIndex = 5;
+            this.panel10.Size = new System.Drawing.Size(253, 95);
+            this.panel10.TabIndex = 0;
             // 
             // messageIDLabel
             // 
@@ -644,24 +721,15 @@
             // 
             this.readMessageListBox.FormattingEnabled = true;
             this.readMessageListBox.ItemHeight = 20;
-            this.readMessageListBox.Location = new System.Drawing.Point(3, 484);
+            this.readMessageListBox.Location = new System.Drawing.Point(3, 438);
             this.readMessageListBox.Name = "readMessageListBox";
-            this.readMessageListBox.Size = new System.Drawing.Size(884, 84);
-            this.readMessageListBox.TabIndex = 0;
+            this.readMessageListBox.Size = new System.Drawing.Size(884, 64);
+            this.readMessageListBox.TabIndex = 2;
             this.readMessageListBox.SelectedIndexChanged += new System.EventHandler(this.readMessageListBox_SelectedIndexChanged);
-            // 
-            // readMessageTextBox
-            // 
-            this.readMessageTextBox.Location = new System.Drawing.Point(3, 107);
-            this.readMessageTextBox.Multiline = true;
-            this.readMessageTextBox.Name = "readMessageTextBox";
-            this.readMessageTextBox.ReadOnly = true;
-            this.readMessageTextBox.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.readMessageTextBox.Size = new System.Drawing.Size(884, 371);
-            this.readMessageTextBox.TabIndex = 0;
             // 
             // sendMessageTab
             // 
+            this.sendMessageTab.Controls.Add(this.button1);
             this.sendMessageTab.Controls.Add(this.clearButton);
             this.sendMessageTab.Controls.Add(this.sendMessageTextBox);
             this.sendMessageTab.Controls.Add(this.label6);
@@ -681,10 +749,20 @@
             this.sendMessageTab.Controls.Add(this.toLabel);
             this.sendMessageTab.Location = new System.Drawing.Point(4, 29);
             this.sendMessageTab.Name = "sendMessageTab";
-            this.sendMessageTab.Size = new System.Drawing.Size(895, 576);
+            this.sendMessageTab.Size = new System.Drawing.Size(895, 505);
             this.sendMessageTab.TabIndex = 3;
             this.sendMessageTab.Text = "Send Message";
             this.sendMessageTab.UseVisualStyleBackColor = true;
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(7, 473);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(102, 29);
+            this.button1.TabIndex = 8;
+            this.button1.Text = "Clear Text Fields";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // clearButton
             // 
@@ -698,11 +776,11 @@
             // 
             // sendMessageTextBox
             // 
-            this.sendMessageTextBox.Location = new System.Drawing.Point(138, 451);
+            this.sendMessageTextBox.Location = new System.Drawing.Point(140, 386);
             this.sendMessageTextBox.Multiline = true;
             this.sendMessageTextBox.Name = "sendMessageTextBox";
             this.sendMessageTextBox.Size = new System.Drawing.Size(749, 75);
-            this.sendMessageTextBox.TabIndex = 0;
+            this.sendMessageTextBox.TabIndex = 11;
             // 
             // label6
             // 
@@ -727,14 +805,14 @@
             // 
             this.sendMessageListBox.FormattingEnabled = true;
             this.sendMessageListBox.ItemHeight = 20;
-            this.sendMessageListBox.Location = new System.Drawing.Point(138, 361);
+            this.sendMessageListBox.Location = new System.Drawing.Point(140, 316);
             this.sendMessageListBox.Name = "sendMessageListBox";
-            this.sendMessageListBox.Size = new System.Drawing.Size(749, 84);
-            this.sendMessageListBox.TabIndex = 0;
+            this.sendMessageListBox.Size = new System.Drawing.Size(747, 64);
+            this.sendMessageListBox.TabIndex = 10;
             // 
             // sendButton
             // 
-            this.sendButton.Location = new System.Drawing.Point(792, 541);
+            this.sendButton.Location = new System.Drawing.Point(794, 473);
             this.sendButton.Name = "sendButton";
             this.sendButton.Size = new System.Drawing.Size(95, 29);
             this.sendButton.TabIndex = 9;
@@ -755,8 +833,7 @@
             // 
             this.messageRichTextBox.Location = new System.Drawing.Point(140, 160);
             this.messageRichTextBox.Name = "messageRichTextBox";
-            this.messageRichTextBox.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.Vertical;
-            this.messageRichTextBox.Size = new System.Drawing.Size(747, 194);
+            this.messageRichTextBox.Size = new System.Drawing.Size(747, 150);
             this.messageRichTextBox.TabIndex = 5;
             this.messageRichTextBox.Text = "";
             // 
@@ -842,7 +919,7 @@
             this.messageOperationsTab.Controls.Add(this.panel7);
             this.messageOperationsTab.Location = new System.Drawing.Point(4, 29);
             this.messageOperationsTab.Name = "messageOperationsTab";
-            this.messageOperationsTab.Size = new System.Drawing.Size(895, 576);
+            this.messageOperationsTab.Size = new System.Drawing.Size(895, 505);
             this.messageOperationsTab.TabIndex = 5;
             this.messageOperationsTab.Text = "Message Operations";
             this.messageOperationsTab.UseVisualStyleBackColor = true;
@@ -852,19 +929,19 @@
             this.messageOperationsTextBox.Location = new System.Drawing.Point(8, 114);
             this.messageOperationsTextBox.Multiline = true;
             this.messageOperationsTextBox.Name = "messageOperationsTextBox";
-            this.messageOperationsTextBox.Size = new System.Drawing.Size(879, 456);
-            this.messageOperationsTextBox.TabIndex = 0;
-            this.messageOperationsTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.messageOperationsTextBox.Size = new System.Drawing.Size(879, 388);
+            this.messageOperationsTextBox.TabIndex = 3;
             // 
             // panel9
             // 
+            this.panel9.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panel9.Controls.Add(this.messageIDTextBox4);
             this.panel9.Controls.Add(this.label5);
             this.panel9.Controls.Add(this.retractButton);
             this.panel9.Location = new System.Drawing.Point(538, 8);
             this.panel9.Name = "panel9";
             this.panel9.Size = new System.Drawing.Size(229, 100);
-            this.panel9.TabIndex = 3;
+            this.panel9.TabIndex = 2;
             // 
             // messageIDTextBox4
             // 
@@ -894,6 +971,7 @@
             // 
             // panel8
             // 
+            this.panel8.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panel8.Controls.Add(this.permDeleteCheckBox);
             this.panel8.Controls.Add(this.messageIDTextBox3);
             this.panel8.Controls.Add(this.label4);
@@ -901,7 +979,7 @@
             this.panel8.Location = new System.Drawing.Point(303, 8);
             this.panel8.Name = "panel8";
             this.panel8.Size = new System.Drawing.Size(229, 100);
-            this.panel8.TabIndex = 2;
+            this.panel8.TabIndex = 1;
             // 
             // permDeleteCheckBox
             // 
@@ -941,6 +1019,7 @@
             // 
             // panel7
             // 
+            this.panel7.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panel7.Controls.Add(this.destinationFolderIDTextBox);
             this.panel7.Controls.Add(this.messageIDTextBox2);
             this.panel7.Controls.Add(this.label2);
@@ -949,7 +1028,7 @@
             this.panel7.Location = new System.Drawing.Point(8, 8);
             this.panel7.Name = "panel7";
             this.panel7.Size = new System.Drawing.Size(289, 100);
-            this.panel7.TabIndex = 1;
+            this.panel7.TabIndex = 0;
             // 
             // destinationFolderIDTextBox
             // 
@@ -1004,19 +1083,20 @@
             this.delegateOperationsTab.Location = new System.Drawing.Point(4, 29);
             this.delegateOperationsTab.Name = "delegateOperationsTab";
             this.delegateOperationsTab.Padding = new System.Windows.Forms.Padding(3);
-            this.delegateOperationsTab.Size = new System.Drawing.Size(895, 576);
+            this.delegateOperationsTab.Size = new System.Drawing.Size(895, 505);
             this.delegateOperationsTab.TabIndex = 6;
             this.delegateOperationsTab.Text = "Delegate Operations";
             this.delegateOperationsTab.UseVisualStyleBackColor = true;
             // 
             // panel12
             // 
+            this.panel12.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panel12.Controls.Add(this.getGroupInboxUnread);
             this.panel12.Controls.Add(this.getGroupInbox);
             this.panel12.Controls.Add(this.getGroupMessageSummaries);
             this.panel12.Controls.Add(this.lastMessageIdReceivedLabel);
             this.panel12.Controls.Add(this.lastMessageIdReceivedTextBox);
-            this.panel12.Location = new System.Drawing.Point(522, 0);
+            this.panel12.Location = new System.Drawing.Point(481, 6);
             this.panel12.Name = "panel12";
             this.panel12.Size = new System.Drawing.Size(344, 157);
             this.panel12.TabIndex = 4;
@@ -1069,11 +1149,12 @@
             // 
             // panel11
             // 
+            this.panel11.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panel11.Controls.Add(this.getGroupInboxMIDButton);
             this.panel11.Controls.Add(this.mustHaveAttachmentsCheckBox);
-            this.panel11.Location = new System.Drawing.Point(265, 43);
+            this.panel11.Location = new System.Drawing.Point(266, 49);
             this.panel11.Name = "panel11";
-            this.panel11.Size = new System.Drawing.Size(251, 114);
+            this.panel11.Size = new System.Drawing.Size(209, 114);
             this.panel11.TabIndex = 3;
             // 
             // getGroupInboxMIDButton
@@ -1098,7 +1179,7 @@
             // 
             // showGroupBoxButton
             // 
-            this.showGroupBoxButton.Location = new System.Drawing.Point(265, 6);
+            this.showGroupBoxButton.Location = new System.Drawing.Point(266, 12);
             this.showGroupBoxButton.Name = "showGroupBoxButton";
             this.showGroupBoxButton.Size = new System.Drawing.Size(140, 31);
             this.showGroupBoxButton.TabIndex = 2;
@@ -1108,14 +1189,15 @@
             // 
             // panel3
             // 
+            this.panel3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panel3.Controls.Add(this.addDelegateButton);
             this.panel3.Controls.Add(this.deleteDelegateButton);
             this.panel3.Controls.Add(this.delegateAddressLabel);
             this.panel3.Controls.Add(this.delegateAddressTextBox);
-            this.panel3.Location = new System.Drawing.Point(8, 43);
+            this.panel3.Location = new System.Drawing.Point(9, 49);
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(251, 114);
-            this.panel3.TabIndex = 2;
+            this.panel3.TabIndex = 1;
             // 
             // addDelegateButton
             // 
@@ -1155,21 +1237,39 @@
             // 
             // showDelegatesButton
             // 
-            this.showDelegatesButton.Location = new System.Drawing.Point(8, 6);
+            this.showDelegatesButton.Location = new System.Drawing.Point(9, 12);
             this.showDelegatesButton.Name = "showDelegatesButton";
             this.showDelegatesButton.Size = new System.Drawing.Size(140, 31);
-            this.showDelegatesButton.TabIndex = 1;
+            this.showDelegatesButton.TabIndex = 0;
             this.showDelegatesButton.Text = "Show Delegates";
             this.showDelegatesButton.UseVisualStyleBackColor = true;
             this.showDelegatesButton.Click += new System.EventHandler(this.showDelegatesButton_Click);
             // 
             // groupBoxRichTextBox
             // 
-            this.groupBoxRichTextBox.Location = new System.Drawing.Point(8, 163);
+            this.groupBoxRichTextBox.Location = new System.Drawing.Point(8, 169);
             this.groupBoxRichTextBox.Name = "groupBoxRichTextBox";
-            this.groupBoxRichTextBox.Size = new System.Drawing.Size(879, 396);
-            this.groupBoxRichTextBox.TabIndex = 0;
+            this.groupBoxRichTextBox.Size = new System.Drawing.Size(879, 333);
+            this.groupBoxRichTextBox.TabIndex = 5;
             this.groupBoxRichTextBox.Text = "";
+            // 
+            // logInLabel
+            // 
+            this.logInLabel.AutoSize = true;
+            this.logInLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.logInLabel.Location = new System.Drawing.Point(425, 9);
+            this.logInLabel.Name = "logInLabel";
+            this.logInLabel.Size = new System.Drawing.Size(0, 20);
+            this.logInLabel.TabIndex = 0;
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
+            this.pictureBox1.Location = new System.Drawing.Point(4, -1);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(287, 66);
+            this.pictureBox1.TabIndex = 1;
+            this.pictureBox1.TabStop = false;
             // 
             // Form1
             // 
@@ -1177,12 +1277,14 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
             this.ClientSize = new System.Drawing.Size(903, 609);
+            this.Controls.Add(this.pictureBox1);
+            this.Controls.Add(this.logInLabel);
             this.Controls.Add(this.readMessageSubmitButton);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximumSize = new System.Drawing.Size(919, 648);
             this.Name = "Form1";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "DataMotion Direct";
+            this.Text = "DataMotion Direct REST";
             this.readMessageSubmitButton.ResumeLayout(false);
             this.accountTab.ResumeLayout(false);
             this.accountTab.PerformLayout();
@@ -1197,7 +1299,11 @@
             this.panel6.ResumeLayout(false);
             this.panel6.PerformLayout();
             this.readMessageTab.ResumeLayout(false);
-            this.readMessageTab.PerformLayout();
+            this.messageTabControl.ResumeLayout(false);
+            this.textTab.ResumeLayout(false);
+            this.textTab.PerformLayout();
+            this.rawHTMLTab.ResumeLayout(false);
+            this.rawHTMLTab.PerformLayout();
             this.panel10.ResumeLayout(false);
             this.panel10.PerformLayout();
             this.sendMessageTab.ResumeLayout(false);
@@ -1217,7 +1323,9 @@
             this.panel11.PerformLayout();
             this.panel3.ResumeLayout(false);
             this.panel3.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -1270,7 +1378,6 @@
         private System.Windows.Forms.Label lastMessageIDLabel;
         private System.Windows.Forms.TextBox messageSummariesTextBox;
         private System.Windows.Forms.TextBox accountTextBox;
-        private System.Windows.Forms.TextBox readMessageTextBox;
         private System.Windows.Forms.Button newReadMessageSubmitButton;
         private System.Windows.Forms.ListBox sendMessageListBox;
         private System.Windows.Forms.Button removeAttachmentButton;
@@ -1326,6 +1433,15 @@
         private System.Windows.Forms.Button logOnWithSessionKeyButton;
         private System.Windows.Forms.Label sessionKeyLabel;
         private System.Windows.Forms.TextBox sessionKeyTextBox;
+        private System.Windows.Forms.Button getUnreadMessagesButton;
+        private System.Windows.Forms.TabControl messageTabControl;
+        private System.Windows.Forms.TabPage textTab;
+        private System.Windows.Forms.TextBox readMessageTextBox;
+        private System.Windows.Forms.TabPage rawHTMLTab;
+        private System.Windows.Forms.TextBox readMessageTextBox2;
+        private System.Windows.Forms.Label logInLabel;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.PictureBox pictureBox1;
     }
 }
 
